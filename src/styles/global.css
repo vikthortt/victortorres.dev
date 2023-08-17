@@ -1,0 +1,24 @@
+body {
+  background: #ccc5c5;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5em;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.social-media {
+  margin: 50px 0 0 0;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
