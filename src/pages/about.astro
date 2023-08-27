@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/ContentLayout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+
+const title = 'Victor Torres | About'
+const description = "About Victor Torres"
+---
+
+<Layout
+  title={title}
+  description={description}
+  current="about"
+>
+  <h1>About</h1>
+  <p>
+    Hey there, I'm Victor 👋.
+  </p>
+  <p>
+    I'm a software developer based in Guadalajara, Mexico. My career has mainly revolved around crafting fluid
+    user interactions and system responses for the web, primarily with Angular and, more recently, Vue.
+    Alongside, I've ventured into backend development using NodeJS and Python.
+  </p>
+
+  <h2>My Story</h2>
+  <p>
+    My journey in the software industry has been a continuous evolution, marked by curiosity.  From my early days
+    tinkering with code and discovering the power of VBA macros for Word and Excel, I realized the transformative
+    potential of technology. Participating in the local stage of the Mexican Informatics Olympiad during my final
+    year in high school introduced me to the intriguing world of algorithms and C programming. This experience not
+    only sharpened my problem-solving skills but also ignited a passion for diving deeper into the world of programming.
+  </p>
+
+  <p>
+    Get in touch on <a href="https://twitter.com/VikthorT.T">twitter</a>.
+  </p>
+</Layout>
