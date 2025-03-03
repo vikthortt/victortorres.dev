@@ -10,12 +10,12 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.0.4",
-    "@astrojs/vue": "^4.0.5",
+    "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/vue": "^5.0.7",
     "@fontsource-variable/karla": "^5.0.9",
     "@fontsource-variable/nunito": "^5.0.9",
     "@vueuse/core": "^10.3.0",
-    "astro": "^4.0.7",
+    "astro": "^5.4.1",
     "vue": "^3.3.4",
     "vuetify": "^3.3.20"
   },
