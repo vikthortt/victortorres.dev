@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/BaseLayout.astro'
+import HeaderNav from "../components/HeaderNav.astro";
+
+const title = '404 - Page Not Found'
+const description = 'The page you are looking for does not exist. Please check the URL or return to the homepage.'
+---
+
+<Layout
+  title={title}
+  description={description}
+>
+  <HeaderNav current=""/>
+  <main class="container flex flex-col justify-center grow px-4 mx-auto max-w-[800px]">
+    <h1 class="font-heading text-section-title text-primary my-4 text-center">
+      404 - Page Not Found
+    </h1>
+    <p class="text-paragraph my-4 text-center">
+      The page you are looking for does not exist.
+      <br>
+      Please check the URL or return to the <a href="/" class="text-primary underline">homepage</a>.
+    </p>
+  </main>
+</Layout>
