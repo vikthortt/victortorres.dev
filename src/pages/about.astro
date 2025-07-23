@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/ContentLayout.astro';
-import HeaderNav from '../components/HeaderNav.astro';
+import { Image } from "astro:assets";
+
+import ProfilePicture from '../images/victortorres.jpg';
 
 const title = 'About'
 const description = "About Victor Torres"
@@ -39,6 +41,13 @@ const description = "About Victor Torres"
     </p>
 
   </article>
-  <div slot="sidebar">
+  <div slot="sidebar" class="sidebar flex flex-col items-center">
+    <Image
+      src={ProfilePicture}
+      alt="Victor Torres profile picture"
+      width={300}
+      height={300}
+      class="rounded-full my-8 border border-border"
+    />
   </div>
 </Layout>
