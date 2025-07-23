@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/ContentLayout.astro';
-import HeaderNav from '../components/HeaderNav.astro';
 
 const title = 'Resources'
 const description = "Victor Torres's list of useful content"
@@ -11,8 +10,30 @@ const description = "Victor Torres's list of useful content"
   description={description}
   current="resources"
 >
-  <p class="mb-4 text-base">
-    This is a list of Internet resources that I've found useful in my journey. Most of them are related to the realm of code
+  <p class="font-body text-paragraph my-2">
+    This is a list of Internet resources that I've found useful at some point. Most of them are related to software development, but there are also some that I use in my daily life.
   </p>
+
+  <h2 class="text-section-title text-primary mt-4 xl:mt-8">
+    Frontend Development
+  </h2>
+
+  <h3 class="text-subsection-title my-2">
+    Frameworks and Libraries:
+  </h3>
+  <ul class="list-disc pl-6 text-paragraph">
+    <li><a href="https://angular.io" class="text-primary hover:underline">Angular</a> - AngularJS was the first framework I used, and I loved how easy it was build interactive apps with its two-ways data binding. When Angular 2+ was launched, I adopted it immediately, migrating the few production applications we had to it. Sometimes, I still miss working with it.</li>
+    <li><a href="https://vuejs.org" class="text-primary hover:underline">Vue.js</a> - This is my main stack now. I've been working with vue for close to 5 years now, and I'm still in love with it.</li>
+    <li><a href="https://react.dev" class="text-primary hover:underline">React</a> - While it's not my personal favorite, I acknowledge its popularity and capabilities. It's the most widely used framework out there for good reasons. Having React in your toolkit as a developer is almost a must nowadays.</li>
+    <li><a href="https://astro.build" class="text-primary hover:underline">Astro</a> - So far, my favorite static site generator. I like the simplicity you can build sites with it. Plus it allows you to use multiple frameworks in the same project.</li>
+    <li><a href="https://tailwindcss.com" class="text-primary hover:underline">Tailwind CSS</a> - My go-to CSS framework. You need to get used to its philosophy first if you want to be productive, otherwise making a change of style is a headache. I'm still learning all the customization you can configure.</li>
+    <li><a href="https://vitejs.dev" class="text-primary hover:underline">Vite</a> - If you ever worked with webpack, you know why I love Vite.</li>
+    <li><a href="https://vitest.dev" class="text-primary hover:underline">Vitest</a> - A Vite-native testing framework. I used to skip unit testing, Jest always felt so slow when running my tests. With Vitest that is not an excuse anymore (most of the time).</li>
+    <li><a href="https://nuxt.com" class="text-primary hover:underline">Nuxt</a> - An incredible framework for building web applications with Vue. I spend most of my days at work working with it. It's really easy to get started, but there's a lot more that makes it really powerful.</li>
+    <li><a href="https://qwik.builder.io" class="text-primary hover:underline">Qwik</a> - Resumability is the idea behind Qwik. It let you build extremely fast applications. If you know react, you already know ~80% of it.</li>
+    <li><a href="https://nextjs.org" class="text-primary hover:underline">Next.js</a> - Next was the first framework that introduced me to the page-based routes concept. A great framework on top of React for building web application. A lot of similarities with Nuxt.</li>
+    <li><a href="https://remix.run" class="text-primary hover:underline">Remix</a> - I haven't had the opportunity to play with it yet, but some awesome devs are behind this project. Remix is a framework you must have on your watchlist at least.</li>
+    <li><a href="https://rxjs.dev" class="text-primary hover:underline">RxJS</a> - A reactive programming library. It takes a lot of effort to wrap your mind around the new paradigm of handling data with it, but once you do it, you realize it is incredible powerful and flexible</li>
+  </ul>
 
 </Layout>

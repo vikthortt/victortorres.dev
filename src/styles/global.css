@@ -1,64 +1,49 @@
-:root {
-  --content-width: calc(100% - 2em);
-  --content-width-max: 1024px;
+@import "tailwindcss";
 
-  --font-header: Karla, sans-serif;
-  --font-body: Lato, sans-serif;
+@theme {
+  --spacing: 4px;
 
-  --primary-background-color: #f7ffff;
-  --secondary-background-color: #ccc5c5;
+  --font-heading: 'Karla', sans-serif;
+  --font-body: 'Nunito Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  --text-content-color: #111;
-  --text-header-color: #00ebd8;
-  --text-links-color: #00ebd8;
+  --color-background: #1B1F23;
+  --color-surface: #2A2E35;
+  --color-primary-text: #F0F1F2;
+  --color-secondary-text: #A8B2C1;
+  --color-primary: #34D399;
+  --color-secondary: #35A6D4;
+  --color-accent: #DE85FD;
 
-}
+  --color-error: #FF4E39;
+  --color-warning: #D6D320;
+  --color-info: #28A1FE;
+  --color-success: #20D65A;
+  --color-border: #2f3135;
 
-:root.theme-dark {
-  --primary-background-color: #2a2a2a;
-  --secondary-background-color: #212121;
+  --text-page-title: 48px;
+  --text-page-title--line-height: 64px;
+  --text-page-title--letter-spacing: calc(48px * 0.05);
+  --text-page-title--font-weight: 800;
 
-  --text-content-color: #f7ffff;
-  --text-header-color: #00ebd8;
-  --text-links-color: #00ebd8;
-}
+  --text-section-title: 32px;
+  --text-section-title--line-height: 48px;
+  --text-section-title--letter-spacing: calc(32px * 0.10);
+  --text-section-title--font-weight: 600;
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+  --text-subsection-title: 24px;
+  --text-subsection-title--line-height: 36px;
+  --text-subsection-title--letter-spacing: calc(24px * 0.10);
+  --text-subsection-title--font-weight: 600;
 
-html,
-body {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
+  --text-paragraph: 20px;
+  --text-paragraph--line-height: 32px;
+  --text-paragraph--letter-spacing: calc(20px * 0.05);
 
-body {
-  font-family: 'Lato', sans-serif;
-  background: var(--primary-background-color);
-  color: var(--text-content-color);
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  font-size: 20px;
-  line-height: 1.6;
-}
+  --text-caption: 16px;
+  --text-caption--line-height: 20px;
+  --text-caption--letter-spacing: calc(16px * 0.05);
 
-h1, h2, h3, h4, h5, h6, header {
-  font-family: 'Karla', sans-serif;
-  color: var(--text-header-color);
-}
-
-a {
-  color: var(--text-links-color);
-  text-decoration: none;
-}
-
-.content {
-  width: var(--content-width);
-  max-width: var(--content-width-max);
-  padding-bottom: 2em;
+  --text-code: 18px;
+  --text-code--line-height: 24px;
 }
