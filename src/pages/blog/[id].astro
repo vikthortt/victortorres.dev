@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from "../../layouts/ContentLayout.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
 import Prose from '../../components/Prose.astro';
 
 // 1. Generate a new path for every collection entry
@@ -19,12 +19,12 @@ const { post } = Astro.props;
 const { title, description } = post.data;
 const { Content } = await render(post);
 ---
-<Layout
+<BlogLayout
   title={title}
   description={description}
-  current="blog"
+  postEntry={post}
 >
   <Prose>
     <Content />
   </Prose>
-</Layout>
+</BlogLayout>

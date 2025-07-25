@@ -1,0 +1,47 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import HeaderNav from '../components/HeaderNav.astro';
+import PostHeader from '../components/PostHeader.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  title: string,
+  description: string,
+  postEntry: CollectionEntry<'blog'>;
+}
+
+const { postEntry, title, description } = Astro.props;
+const post = postEntry.data
+---
+<BaseLayout
+  title={title}
+  description={description}
+>
+  <HeaderNav current='' />
+  <main class="container px-4 xl:px-0 mx-auto max-w-[1200px] grow mb-16">
+    <div class="mb-4 lg:mb-8">
+      <PostHeader
+        title={post.title}
+        publishDate={post.created_date.toDateString()}
+        modifiedDate={post.modified_date?.toDateString()}
+        author={post.author?.name}
+        tags={post.tags}
+        readingTime={post.reading_time}
+        image={post.image}
+        imageAlt={post.image_alt || post.title}
+        imageCredit={post.image_credit}
+        imageCreditUrl={post.image_credit_url}
+        imageCreditSource={post.image_credit_source}
+        imageCreditSourceUrl={post.image_credit_source_url}
+      />
+    </div>
+    <section class="flex flex-col lg:flex-row gap-8">
+      <div class="lg:w-3/4">
+        <slot />
+      </div>
+      <aside class="min-w-[300px] lg:w-1/4">
+        <slot name="sidebar" />
+      </aside>
+    </section>
+  </main>
+</BaseLayout>
