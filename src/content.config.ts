@@ -17,7 +17,7 @@ const blog = defineCollection({
     created_date: z.date(),
     published_date: z.date().optional(),
     modified_date: z.date().optional(),
-    category: z.string().default('Reflections'),
+    category: z.string().default('reflections'),
     tags: z.array(z.string()).optional(),
     canonical_url: z.string().optional(),
     slug: z.string().optional(),

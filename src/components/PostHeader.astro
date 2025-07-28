@@ -34,7 +34,7 @@ const {
 
 const images = image ? import.meta.glob<{default: ImageMetadata }>(`/src/images/**/*.{jpeg,jpg,png}`) : undefined;
 let heroImage
-if (images) {
+if (images && `/src/images/${image}` in images) {
   heroImage = images[`/src/images/${image}`]()
 }
 
