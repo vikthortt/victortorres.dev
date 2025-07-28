@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/BaseLayout.astro'
+import HeaderNav from "../../components/HeaderNav.astro";
+import {getCollection} from "astro:content";
+import PostCard from "../../components/PostCard.astro";
+
+const title = 'Blog'
+const description = 'Explore my blog posts on various topics including web development, design, and more. Stay tuned for updates!'
+
+const allPublishedPosts = await getCollection('blog', ({data}) => data.status === 'published');
+
+---
+
+<Layout
+  title={title}
+  description={description}
+>
+  <HeaderNav current=""/>
+  <main class="container px-4 xl:px-0 mx-auto max-w-[1200px] grow mb-16">
+    <header>
+      <h1 class="font-heading text-section-title text-primary mt-0 mb-4">
+        Blog
+      </h1>
+    </header>
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-1 md:col-span-2 lg:col-span-3">
+        <h2 class="text-primary-text text-subsection-title mt-2">Latest Posts</h2>
+      </div>
+      {allPublishedPosts.map((post) => (
+        <div class="w-full bg-surface">
+          <PostCard
+            url={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            category={post.data.category}
+            date={post.data.created_date}
+            readingTime={post.data.reading_time || 0}
+            image={post.data.image}
+            imageAlt={post.data.image_alt || title}
+            tags={post.data.tags}
+          />
+        </div>
+      ))}
+    </section>
+  </main>
+</Layout>
