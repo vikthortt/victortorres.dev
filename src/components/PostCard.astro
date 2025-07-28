@@ -30,13 +30,13 @@ if (images && `/src/images/${image}` in images) {
 ---
 <div>
   <article class="post-card bg-surface p-4 ">
-    <div class="post-card-image">
+    <div class="post-card-image mb-2">
       {heroImage && (
         <Image
           src={heroImage}
           alt={imageAlt || title}
-          width={1200}
-          height={300}
+          width={600}
+          height={400}
           layout="full-width"
           fit="cover"
           quality='high'
@@ -44,8 +44,8 @@ if (images && `/src/images/${image}` in images) {
       )}
     </div>
     <div class="post-card-content">
-      <div class="post-card-category">
-          <a href={`/category/${category}`} class="post-card-category-link text-primary font-heading text-paragraph font-bold mb-4 capitalize">
+      <div class="post-card-category mb-2">
+          <a href={`/blog/category/${category}`} class="post-card-category-link text-primary font-heading text-paragraph font-bold mb-4 capitalize">
             {category}
           </a>
       </div>
@@ -55,25 +55,24 @@ if (images && `/src/images/${image}` in images) {
       <p class="post-card-description text-secondary-text font-body text-paragraph text-justify">
         {description}
       </p>
-      <div class="post-card-meta">
-        <div class="post-card-meta-info flex justify-end gap-4 text-primary-text font-body text-caption my-4">
+      <div class="post-card-meta mt-4">
+        <div class="post-card-meta-info flex justify-between gap-4 text-primary-text font-body text-caption my-4">
           <time datetime={date.toISOString()} class="post-card-date">
-            {formattedDate}
+            📅 {formattedDate}
           </time>
           <span class="post-card-reading-time">
-            {readingTime} min read
+            🕒 {readingTime} min read
         </span>
         </div>
         {tags && tags.length > 0 && (
-          <ul class="post-card-tags flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 mt-2 md:mt-0">
+            <span class="font-heading text-primary-text text-caption m-2">🏷️</span>
             {tags.map(tag => (
-              <li class="post-card-tag text-primary-text underline capitalize font-body text-caption italic">
-                <a href={`/tags/${tag}`} class="post-card-tag-link">
-                  {tag}
-                </a>
-              </li>
+              <span class=" font-heading text-primary text-caption underline my-2">
+                #{tag}
+              </span>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>
