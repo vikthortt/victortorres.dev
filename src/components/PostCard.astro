@@ -44,10 +44,8 @@ if (images && `/src/images/${image}` in images) {
       )}
     </div>
     <div class="post-card-content">
-      <div class="post-card-category mb-2">
-          <a href={`/blog/category/${category}`} class="post-card-category-link text-primary font-heading text-paragraph font-bold mb-4 capitalize">
-            {category}
-          </a>
+      <div class="post-card-category text-primary font-heading text-paragraph font-bold my-2 capitalize">
+        {category}
       </div>
       <h2 class="post-card-title text-primary-text font-heading text-subsection-title font-bold">
         <a href={url}>{title}</a>
