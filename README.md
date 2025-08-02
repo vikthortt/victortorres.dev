@@ -1,33 +1,80 @@
-# Astro Starter Kit: Minimal
+# Victor Torres' Personal Website and Blog
 
-```
-npm create astro@latest -- --template minimal
-```
+This is the source code for my personal website and blog built with [Astro](https://astro.build/).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+This site is my personal experiment. Expect to see changes and improvements over time as I learn more about modern 
+web development practices, new frameworks, and tools.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+[🌍 Visit the blog](https://victortorres.dev)
 
-## 🚀 Project Structure
+## 🚀 Tech Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Framework**: [Astro](https://astro.build/) (Content Collections + MDX) + [Vue.js](https://vuejs.org/) for components
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) + Typography Plugin
+- **Markdown**: [MDX](https://mdxjs.com/) with Astro content collections
+- **Hosting**: [Netlify](https://netlify.com)
 
-```
+## 📦 Features
+
+- Static site generation for fast performance
+- SEO-friendly with metadata and structured data
+- Markdown & MDX blog posts with custom components
+- Content collections for easy blog management
+- Image optimization for blog posts
+- Simple CI/CD deployment via Netlify
+- Tag and category filtering (planned)
+- Search functionality (planned)
+- Blog post series support (planned)
+- Dark/light mode support (planned)
+- Analytics integration (planned)
+- Newsletter signup (planned)
+
+## 📂 Project Structure
+
+```plaintext
 /
-├── public/
+├── public/ # Static assets (favicon, etc.)
+│   └── favicon.svg
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── blog/ # Blog post content (MDX)
+│   ├── components/ # Reusable components (e.g., BlogCard, Footer)
+│   ├── images/ # Image assets (profile, blog images)
+│   │   └── blog/ # Hero images and other post-specific images
+│   ├── layouts/ # Page and post layouts
+│   ├── pages/ # Static pages (Home, About, Resources)
+│   ├── styles/ # Tailwind config + global styles
+│   └── content.config.ts # Astro content collections config
+├── astro.config.mjs # Astro configuration
+├── package.json # Project dependencies and scripts
+├── tailwind.config.cjs # Tailwind CSS configuration
+└── tsconfig.json # TypeScript configuration
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🧑‍💻 Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+# Clone the repo
+git clone https://github.com/vikthortt/victortorres.dev.git
+cd victortorres.dev
 
-Any static assets, like images, can be placed in the `public/` directory.
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+```
+
+## 🔧 Development
+
+### Adding New Blog Posts
+1. Create a new MDX file in the `src/blog/` directory
+2. Add frontmatter with title, date, description, etc.
+3. Write your content using Markdown and JSX components
+
+### Customizing Styles
+- Global styles are in `src/styles/global.css`
+- Component-specific styles use Tailwind CSS utility classes
 
 ## 🧞 Commands
 
@@ -42,6 +89,10 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## 📝 License
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+All the code is licensed under the MIT License. Feel free to use it as a reference or starting point for your own projects.
+
+The content of the blog posts is my personal work and may be shared with attribution.
+
+The images used are either my own or sourced from free stock image sites with proper attribution.
