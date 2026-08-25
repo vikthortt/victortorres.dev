@@ -1,0 +1,1 @@
+See [AGENTS.md](./AGENTS.md) for project context, commands, and conventions — that file is the source of truth for this repo, kept tool-agnostic on purpose. This file exists only so Gemini CLI picks it up automatically.

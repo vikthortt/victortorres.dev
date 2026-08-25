@@ -1,0 +1,1 @@
+See AGENTS.md for project context, commands, and conventions — that file is the source of truth for this repo, kept tool-agnostic on purpose. This file exists only so Cursor picks it up automatically.

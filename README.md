@@ -43,11 +43,11 @@ web development practices, new frameworks, and tools.
 │   │   └── blog/ # Hero images and other post-specific images
 │   ├── layouts/ # Page and post layouts
 │   ├── pages/ # Static pages (Home, About, Resources)
-│   ├── styles/ # Tailwind config + global styles
+│   ├── styles/ # Tailwind config (CSS-first, v4) + global styles
 │   └── content.config.ts # Astro content collections config
 ├── astro.config.mjs # Astro configuration
 ├── package.json # Project dependencies and scripts
-├── tailwind.config.cjs # Tailwind CSS configuration
+├── AGENTS.md # Guidance for AI coding agents
 └── tsconfig.json # TypeScript configuration
 ```
 
