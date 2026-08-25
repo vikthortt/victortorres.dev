@@ -9,7 +9,7 @@ web development practices, new frameworks, and tools.
 
 ## 🚀 Tech Stack
 
-- **Framework**: [Astro](https://astro.build/) (Content Collections + MDX) + [Vue.js](https://vuejs.org/) for components
+- **Framework**: [Astro](https://astro.build/) (Content Collections + MDX)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) + Typography Plugin
 - **Markdown**: [MDX](https://mdxjs.com/) with Astro content collections

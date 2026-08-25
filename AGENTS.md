@@ -6,7 +6,7 @@ working in this repository. This file is the single source of truth — tool-spe
 
 ## Project overview
 
-Victor Torres' personal website and blog: a static site built with Astro, Vue islands,
+Victor Torres' personal website and blog: a static site built with Astro,
 MDX content collections, and Tailwind CSS v4. Deployed to Netlify.
 
 ## Setup
@@ -20,13 +20,13 @@ install/build issues — most weird dependency errors on an older Node trace bac
 
 ## Commands
 
-| Command | Action |
-| --- | --- |
-| `npm run dev` | Start local dev server (`localhost:3000` / `4321` depending on Astro default) |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Serve the built `./dist/` locally |
-| `npm run astro -- check` | Type-check `.astro` files |
-| `npm run astro -- <cmd>` | Any Astro CLI command |
+| Command                  | Action                                                                        |
+| ------------------------ | ----------------------------------------------------------------------------- |
+| `npm run dev`            | Start local dev server (`localhost:3000` / `4321` depending on Astro default) |
+| `npm run build`          | Build production site to `./dist/`                                            |
+| `npm run preview`        | Serve the built `./dist/` locally                                             |
+| `npm run astro -- check` | Type-check `.astro` files                                                     |
+| `npm run astro -- <cmd>` | Any Astro CLI command                                                         |
 
 There is no test suite in this repo yet. Validate changes with `npm run build` (it will fail
 loudly on template errors — Astro 7's compiler is strict about things like unclosed tags) and
@@ -41,9 +41,10 @@ a visual check via `npm run dev` for anything touching layout, styles, or MDX re
   (not `slug` — that field is a legacy/optional frontmatter override, not the routing key).
 - **Layouts**: `src/layouts/` — `BaseLayout.astro` is the outer HTML shell every page uses;
   `BlogLayout.astro` / `ContentLayout.astro` wrap post/page content.
-- **Components**: `src/components/` — plain `.astro` components; Vue is only pulled in via
-  `@astrojs/vue` for islands that need client-side interactivity (there's no Vue Router/store —
-  keep Vue usage scoped to individual interactive components, not whole pages).
+- **Components**: `src/components/` — Mostly plain `.astro` components. For simple interactivity, use
+  a `<script>` tag in the `.astro` component. If the logic is complex enough to genuinely need
+  a framework (non-trivial state, reactivity across multiple elements, etc.), prefer **Vue**
+  (`@astrojs/vue`) over other frameworks — install it if not present already
 - **Styles**: `src/styles/global.css` is the only styling config that matters. Tailwind v4 is
   **CSS-first** — theme tokens (colors, fonts, spacing, custom text sizes) live in the `@theme`
   block there. There is intentionally **no `tailwind.config.js/cjs`** in this repo; don't add
@@ -65,10 +66,11 @@ a visual check via `npm run dev` for anything touching layout, styles, or MDX re
 
 This project tracks Astro and Tailwind major versions somewhat aggressively. When bumping
 `astro`, `@astrojs/*`, or `tailwindcss`:
+
 - Re-run `npm run build` — Astro's Rust compiler will hard-fail on template issues (e.g. unclosed
   tags) that older versions silently auto-corrected.
 - Check `npm audit` after the bump; some vulnerabilities (e.g. in `vite`/`rollup`/`sharp`) are
-  transitive from `@astrojs/vue`/Astro itself and aren't fixable from this repo — track them,
-  don't force-fix with `npm audit fix --force`.
+  transitive from Astro itself and aren't fixable from this repo — track them, don't force-fix
+  with `npm audit fix --force`.
 - Tailwind v4 config lives in CSS (`src/styles/global.css`), not a JS file — nothing to migrate
   there on a Tailwind bump.
