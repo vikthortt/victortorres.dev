@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+
+const title = 'Uses'
+const description = "Victor Torres's toolkit — hardware and software."
+
+// TODO: replace with your real hardware/software list before publishing.
+const hardware = [
+	'14" MacBook Pro (M-series)',
+	'27" 4K monitor',
+	'Mechanical keyboard',
+];
+
+const software = [
+	'VS Code',
+	'Astro + Tailwind CSS',
+	'iTerm2 + zsh',
+];
+---
+
+<Layout
+	title={title}
+	description={description}
+	current="uses"
+>
+	<h1 class="font-heading font-semibold text-[24px] text-primary-text mb-6">Uses</h1>
+
+	<div class="flex flex-col gap-8">
+		<div>
+			<h2 class="font-mono font-semibold text-[13px] text-muted-text uppercase tracking-wide mb-3">Hardware</h2>
+			<ul class="flex flex-col gap-2">
+				{hardware.map((item) => (
+					<li class="font-body text-[16px] text-body-text">{item}</li>
+				))}
+			</ul>
+		</div>
+		<div>
+			<h2 class="font-mono font-semibold text-[13px] text-muted-text uppercase tracking-wide mb-3">Software</h2>
+			<ul class="flex flex-col gap-2">
+				{software.map((item) => (
+					<li class="font-body text-[16px] text-body-text">{item}</li>
+				))}
+			</ul>
+		</div>
+	</div>
+</Layout>

@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+
+const title = 'Now'
+const description = "What Victor Torres is up to right now."
+
+// TODO: replace with what you're actually up to before publishing.
+const updatedOn = 'Updated Sep 2026'
+const paragraph = "Currently focused on shipping small, fast frontend projects and writing up what I learn along the way. This page follows the /now movement — a snapshot of what I'm focused on, not a full life update."
+---
+
+<Layout
+	title={title}
+	description={description}
+	current="now"
+>
+	<p class="font-mono text-[13px] text-muted-text mb-4">{updatedOn}</p>
+	<p class="font-body text-[17px] leading-[1.75] text-body-text max-w-[520px]">{paragraph}</p>
+</Layout>
