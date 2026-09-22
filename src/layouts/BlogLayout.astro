@@ -17,28 +17,20 @@ const post = postEntry.data
   description={description}
   current="notes"
 >
-  <div class="mb-4 lg:mb-8">
-    <PostHeader
-      title={post.title}
-      publishDate={post.created_date.toDateString()}
-      modifiedDate={post.modified_date?.toDateString()}
-      author={post.author?.name}
-      tags={post.tags}
-      readingTime={post.reading_time}
-      image={post.image}
-      imageAlt={post.image_alt || post.title}
-      imageCredit={post.image_credit}
-      imageCreditUrl={post.image_credit_url}
-      imageCreditSource={post.image_credit_source}
-      imageCreditSourceUrl={post.image_credit_source_url}
-    />
+  <PostHeader
+    title={post.title}
+    publishDate={post.created_date.toDateString()}
+    modifiedDate={post.modified_date?.toDateString()}
+    tags={post.tags}
+    readingTime={post.reading_time}
+    image={post.image}
+    imageAlt={post.image_alt || post.title}
+    imageCredit={post.image_credit}
+    imageCreditUrl={post.image_credit_url}
+    imageCreditSource={post.image_credit_source}
+    imageCreditSourceUrl={post.image_credit_source_url}
+  />
+  <div class="mt-6">
+    <slot />
   </div>
-  <section class="flex flex-col lg:flex-row gap-8">
-    <div class="lg:w-3/4">
-      <slot />
-    </div>
-    <aside class="min-w-[300px] lg:w-1/4">
-      <slot name="sidebar" />
-    </aside>
-  </section>
 </BaseLayout>

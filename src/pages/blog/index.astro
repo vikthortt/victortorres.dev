@@ -1,13 +1,25 @@
 ---
 import Layout from '../../layouts/BaseLayout.astro'
 import {getCollection} from "astro:content";
-import PostCard from "../../components/PostCard.astro";
 
-const title = 'Blog'
-const description = 'Explore my blog posts on various topics including web development, design, and more. Stay tuned for updates!'
+const title = 'Notes'
+const description = 'Writing on frontend development and React — the messy parts of shipping good UI.'
 
-const allPublishedPosts = await getCollection('blog', ({data}) => data.status === 'published');
+const allPublishedPosts = (await getCollection('blog', ({data}) => data.status === 'published'))
+  .sort((a, b) => b.data.created_date.valueOf() - a.data.created_date.valueOf());
 
+const allTags = [...new Set(allPublishedPosts.flatMap((post) => post.data.tags ?? []))].sort();
+
+const activeTag = Astro.url.searchParams.get('tag');
+const posts = activeTag
+  ? allPublishedPosts.filter((post) => post.data.tags?.includes(activeTag))
+  : allPublishedPosts;
+
+const formatDate = (date: Date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] font-mono text-[13px]';
+const pillActive = 'bg-primary text-on-primary';
+const pillInactive = 'text-secondary-text border border-border hover:border-primary';
 ---
 
 <Layout
@@ -15,29 +27,30 @@ const allPublishedPosts = await getCollection('blog', ({data}) => data.status ==
   description={description}
   current="notes"
 >
-  <header>
-    <h1 class="font-heading text-section-title text-primary mt-0 mb-4">
-      Blog
-    </h1>
-  </header>
-  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="col-span-1 md:col-span-2 lg:col-span-3">
-      <h2 class="text-primary-text text-subsection-title mt-2">Latest Posts</h2>
+  <h1 class="font-heading font-semibold text-[24px] text-primary-text mb-6">Notes</h1>
+
+  {allTags.length > 0 && (
+    <div class="flex flex-wrap gap-2 mb-8">
+      <a href="/blog" class={`${pillBase} ${activeTag ? pillInactive : pillActive}`}>All</a>
+      {allTags.map((tag) => (
+        <a href={`/blog?tag=${tag}`} class={`${pillBase} ${activeTag === tag ? pillActive : pillInactive}`}>#{tag}</a>
+      ))}
     </div>
-    {allPublishedPosts.map((post) => (
-      <div class="w-full bg-surface">
-        <PostCard
-          url={`/blog/${post.id}`}
-          title={post.data.title}
-          description={post.data.description}
-          category={post.data.category}
-          date={post.data.created_date}
-          readingTime={post.data.reading_time || 0}
-          image={post.data.image}
-          imageAlt={post.data.image_alt || title}
-          tags={post.data.tags}
-        />
-      </div>
+  )}
+
+  <ul class="flex flex-col gap-5">
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}`} class="block font-heading font-semibold text-[19px] leading-[1.35] text-primary-text hover:text-primary">
+          {post.data.title}
+        </a>
+        <p class="font-mono text-[12px] text-muted-text mt-1">
+          {formatDate(post.data.created_date)} · {post.data.reading_time ?? 1} min read
+        </p>
+      </li>
     ))}
-  </section>
+    {posts.length === 0 && (
+      <li class="font-body text-[16px] text-secondary-text">No notes yet{activeTag ? ` tagged #${activeTag}` : ''}.</li>
+    )}
+  </ul>
 </Layout>
