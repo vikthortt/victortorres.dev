@@ -36,9 +36,9 @@ as two separate passes, or as parallel sub-agents if the runner supports that).
 
 > Does the code conform to this repo's documented coding standards?
 
-Source of truth: [CODING_STANDARDS.md](../CODING_STANDARDS.md) at the repo root — the concrete,
+Source of truth: [CODING_STANDARDS.md](../../CODING_STANDARDS.md) at the repo root — the concrete,
 checkable rules (TypeScript/Props conventions, formatting, Tailwind usage, content-collection
-schema, naming, commits). Use [AGENTS.md](../AGENTS.md) for broader architecture/conventions
+schema, naming, commits). Use [AGENTS.md](../../AGENTS.md) for broader architecture/conventions
 context, but CODING_STANDARDS.md is the checklist for this axis. Concretely:
 
 - `Props` interface present and named exactly `Props`; no `any`; strict-tsconfig violations.

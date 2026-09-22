@@ -2,7 +2,7 @@
 
 The concrete conventions this project follows, derived from the existing codebase and
 cross-checked against the [Astro](https://docs.astro.build/) and [Tailwind CSS](https://tailwindcss.com/docs)
-official docs. This is what [`skills/code-review.md`](./skills/code-review.md) checks code
+official docs. This is what [`.agents/skills/code-review.md`](./.agents/skills/code-review.md) checks code
 against for its "Standards" axis. For architecture/commands, see [AGENTS.md](./AGENTS.md).
 
 ## TypeScript & Astro components
