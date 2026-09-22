@@ -4,6 +4,19 @@ Guidance for AI coding agents (Claude Code, Cursor, Copilot, Codex CLI, Gemini C
 working in this repository. This file is the single source of truth — tool-specific files
 (`CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules/`, `GEMINI.md`) just point here.
 
+## Task-specific agents and skills
+
+- [`agents/`](./agents) holds tool-agnostic agent definitions (plain markdown with frontmatter,
+  no vendor-specific fields) for recurring roles — e.g. [`agents/pr-review.md`](./agents/pr-review.md).
+- [`skills/`](./skills) holds reusable methodologies an agent (or a human) can invoke — e.g.
+  [`skills/code-review.md`](./skills/code-review.md), a two-axis (standards + spec) review
+  process. Its "standards" axis checks against [CODING_STANDARDS.md](./CODING_STANDARDS.md), the
+  concrete coding-standards checklist for this repo. Agents reference skills rather than
+  duplicating their logic: `pr-review` is a thin role wrapper around the `code-review` skill.
+
+Any agent runner can load these directly; they're not tied to a specific tool's subagent or
+skill format.
+
 ## Project overview
 
 Victor Torres' personal website and blog: a static site built with Astro,
