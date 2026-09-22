@@ -1,0 +1,18 @@
+---
+export interface Props {
+  url: string;
+  name: string;
+  description: string;
+  tag: string;
+}
+
+const { url, name, description, tag } = Astro.props as Props;
+---
+<a
+  href={url}
+  class="block bg-surface border border-border rounded-[10px] p-[20px] hover:border-primary"
+>
+  <h2 class="font-heading font-semibold text-[18px] text-primary-text">{name}</h2>
+  <p class="font-body text-[13.5px] leading-[1.5] text-secondary-text mt-2">{description}</p>
+  <span class="inline-block font-mono text-[12px] text-primary mt-3">{tag}</span>
+</a>
