@@ -1,53 +1,52 @@
 ---
-import Layout from '../layouts/ContentLayout.astro';
+import Layout from '../layouts/BaseLayout.astro';
 import { Image } from "astro:assets";
 
 import ProfilePicture from '../images/victortorres.jpg';
 
 const title = 'About'
 const description = "About Victor Torres"
+
+const socialLinks = [
+	{ label: 'GitHub', href: 'https://github.com/vikthortt' },
+	{ label: 'X', href: 'https://x.com/vikthortt' },
+	{ label: 'Email', href: 'mailto:hello@victortorres.dev' },
+];
 ---
 
 <Layout
-  title={title}
-  description={description}
-  current="about"
+	title={title}
+	description={description}
+	current="about"
 >
-  <article>
-    <p class="font-body text-paragraph my-4">
-      Hey! I’m Victor Torres 👋
-    </p>
-    <p class="font-body text-paragraph my-4">
-      I’m a software developer based in Guadalajara, Mexico, passionate about building clean, scalable, and delightful web applications. I believe in sharing knowledge freely, making things people actually use, and writing code that other developers, including my future self, won’t hate you for six months later.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      This blog is where I publish my deep dives, side projects, and ideas worth sharing — mostly for future me, and hopefully useful for others too.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      I created this space to share what I learn while working with modern technologies as I grow into a more well-rounded full-stack developer. I’m not trying to be perfect — I’m trying to <i>document the journey</i>, stay curious, and maybe, just maybe, help a few devs along the way.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      This blog is my digital lab — part archive, part playground. If it helps someone else solve a problem, build a better app, or even just feel less alone in the learning curve, that’s a win.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      When I'm not coding, I'm probably studying something new, reading a book, watching anime or playing some video game.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      Thanks for being here ✌️
-    </p>
-
-    <p class="font-body text-paragraph my-4">
-      - Victor
-    </p>
-
-  </article>
-  <div slot="sidebar" class="sidebar flex flex-col items-center">
-    <Image
-      src={ProfilePicture}
-      alt="Victor Torres profile picture"
-      width={300}
-      height={300}
-      class="rounded-full my-8 border border-border"
-    />
-  </div>
+	<h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">About</h1>
+	<div class="flex flex-wrap items-start gap-6">
+		<Image
+			src={ProfilePicture}
+			alt="Victor Torres profile picture"
+			width={130}
+			height={130}
+			class="rounded-[14px] border border-border shrink-0 object-cover"
+		/>
+		<div class="flex-1 min-w-[280px]">
+			<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
+				Hey, I'm Victor — a software developer based in Guadalajara, Mexico. I build clean, scalable and delightful web applications, and I write about the messy parts of shipping good UI: the frameworks, tradeoffs and full-stack workflows I run into along the way.
+			</p>
+			<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
+				This site is my digital lab — part archive, part playground, mostly written for future me. When I'm not coding, I'm probably studying something new, reading, watching anime, or playing a video game. Thanks for being here.
+			</p>
+			<div class="flex flex-wrap gap-4 font-mono text-[14px] text-primary">
+				{socialLinks.map((social) => (
+					<a
+						href={social.href}
+						class="hover:text-primary-hover"
+						target={social.href.startsWith('http') ? '_blank' : undefined}
+						rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+					>
+						{social.label}
+					</a>
+				))}
+			</div>
+		</div>
+	</div>
 </Layout>
