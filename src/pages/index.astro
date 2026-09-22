@@ -6,6 +6,13 @@ import ProfilePicture from '../images/victortorres.jpg';
 
 const title = 'Victor Torres'
 const description = "Victor's personal website"
+
+const cards = [
+	{ href: '/blog', title: 'Notes', description: 'Writing on frontend & React' },
+	{ href: '/projects', title: 'Projects', description: "Things I've built" },
+	{ href: '/now', title: 'Now', description: "What I'm up to today" },
+	{ href: '/uses', title: 'Uses', description: 'My toolkit' },
+]
 ---
 
 <Layout
@@ -13,30 +20,30 @@ const description = "Victor's personal website"
 	description={description}
 	current="home"
 >
-	<div class="container flex flex-col justify-center grow px-4 mx-auto max-w-[800px]">
+	<div class="flex flex-col items-center text-center">
 		<Image
 			src={ProfilePicture}
 			alt="Victor Torres profile picture"
-			width={200}
-			height={200}
-			class="rounded-full self-center my-8 border border-border"
+			width={76}
+			height={76}
+			class="rounded-full border border-border mb-6"
 		/>
-		<h1 class="font-heading text-page-title my-4 text-left">
-			Hey there, I'm <span class="text-primary">Victor</span> 👋
+		<h1 class="font-heading font-semibold text-[clamp(28px,6vw,34px)] leading-[1.2] text-primary-text">
+			Hi, I'm Victor.
 		</h1>
-		<p class="font-body text-[32px]/[40px] my-2">
-			I’m a software developer from Guadalajara, Mexico, writing about Vue, AWS, and building modern web apps.
+		<p class="font-body text-[16.5px] leading-[1.6] text-body-text max-w-[440px] mt-4">
+			Frontend developer building fast, accessible interfaces. I write about the messy parts of shipping good UI.
 		</p>
-		<p class="font-body text-[32px]/[40px] my-2">
-			Follow along as I explore frameworks, best practices, and full-stack workflows.
-		</p>
-		<div class="w-full flex flex-col md:flex-row-reverse justify-stretch items-center gap-4 mt-4">
-			<a href="/blog" class="bg-primary font-heading text-subsection-title text-[#1F2937] px-8 py-4 cursor-pointer w-full md:w-1/2 text-center">
-				Check out my blog
-			</a>
-			<div class="font-heading text-subsection-title px-8 py-4 cursor-pointer w-full md:w-1/2 text-center">
-				<a href="/about" class="underline">Learn more about me</a>
-			</div>
+		<div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-[14px] max-w-[480px] w-full mt-8">
+			{cards.map((card) => (
+				<a
+					href={card.href}
+					class="bg-surface border border-border rounded-[8px] p-[18px] text-left hover:border-primary"
+				>
+					<h2 class="font-heading font-semibold text-[16px] text-primary-text">{card.title}</h2>
+					<p class="font-body text-[13.5px] leading-[1.5] text-secondary-text mt-1">{card.description}</p>
+				</a>
+			))}
 		</div>
 	</div>
 </Layout>
