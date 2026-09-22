@@ -1,0 +1,141 @@
+---
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+
+const navItems = [
+  { key: 'home', label: 'Home', href: '/' },
+  { key: 'notes', label: 'Notes', href: '/blog' },
+  { key: 'projects', label: 'Projects', href: '/projects' },
+  { key: 'about', label: 'About', href: '/about' },
+  { key: 'uses', label: 'Uses', href: '/uses' },
+  { key: 'now', label: 'Now', href: '/now' },
+] as const;
+
+const socialLinks = [
+  { label: 'GitHub', href: 'https://github.com/vikthortt' },
+  { label: 'X', href: 'https://x.com/vikthortt' },
+  { label: 'Email', href: 'mailto:hello@victortorres.dev' },
+];
+---
+
+<!-- Desktop sidebar -->
+<aside class="hidden min-[760px]:flex min-[760px]:sticky min-[760px]:top-0 min-[760px]:h-screen min-[760px]:w-[240px] min-[760px]:shrink-0 min-[760px]:flex-col min-[760px]:justify-between min-[760px]:bg-sidebar min-[760px]:px-[24px] min-[760px]:py-[32px]">
+  <div>
+    <a href="/" class="flex items-center gap-2 mb-6">
+      <svg class="fill-primary shrink-0" viewBox="0 0 64 64" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30.5424 33.4179L22.3559 48H12.0592L10.5455 33.4179H8.58417L6.75076 16H17.9004L19.2008 31.3709C22.0789 26.3183 24.6798 21.0312 27.5365 16H38.4088L28.6236 33.4179H30.5424ZM46.7398 33.4179L43.4993 48H32.6903L36.016 33.4179H34.076L36.2292 24.0802H27.7015L29.5775 16H57.2492L55.4372 24.0802H46.9312L44.842 33.4179H46.7398Z" />
+      </svg>
+      <span class="font-heading font-semibold text-[16px] text-white">Victor Torres</span>
+    </a>
+    <nav>
+      <ul class="flex flex-col gap-1">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={current === item.key ? 'page' : undefined}
+              class:list={[
+                'block rounded-[4px] px-[10px] py-[9px] font-body font-medium text-[14px] border-l-2',
+                current === item.key
+                  ? 'border-primary bg-[rgba(255,255,255,.08)] text-white'
+                  : 'border-transparent text-nav-inactive hover:text-white',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+  <ul class="flex items-center gap-4 font-mono text-[12.5px] text-secondary-text">
+    {socialLinks.map((social, i) => (
+      <li class="flex items-center gap-4">
+        <a href={social.href} class="hover:text-primary" target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+          {social.label}
+        </a>
+        {i < socialLinks.length - 1 && <span aria-hidden="true">·</span>}
+      </li>
+    ))}
+  </ul>
+</aside>
+
+<!-- Mobile top bar -->
+<div class="min-[760px]:hidden sticky top-0 z-50 bg-sidebar">
+  <div class="flex h-[60px] items-center justify-between px-[20px]">
+    <a href="/" class="flex items-center gap-2">
+      <svg class="fill-primary shrink-0" viewBox="0 0 64 64" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30.5424 33.4179L22.3559 48H12.0592L10.5455 33.4179H8.58417L6.75076 16H17.9004L19.2008 31.3709C22.0789 26.3183 24.6798 21.0312 27.5365 16H38.4088L28.6236 33.4179H30.5424ZM46.7398 33.4179L43.4993 48H32.6903L36.016 33.4179H34.076L36.2292 24.0802H27.7015L29.5775 16H57.2492L55.4372 24.0802H46.9312L44.842 33.4179H46.7398Z" />
+      </svg>
+      <span class="font-heading font-semibold text-[16px] text-white">Victor Torres</span>
+    </a>
+    <button
+      type="button"
+      data-menu-toggle
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      class="flex min-h-[44px] min-w-[44px] items-center justify-center font-mono text-[13px] text-primary"
+    >
+      <span data-menu-toggle-label>Menu</span>
+    </button>
+  </div>
+  <div id="mobile-menu" data-mobile-menu class="hidden flex-col border-t border-menu-divider">
+    <nav>
+      <ul class="flex flex-col">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={current === item.key ? 'page' : undefined}
+              class:list={[
+                'flex h-[48px] items-center px-[20px] font-body font-medium text-[16px] border-l-2 box-border',
+                current === item.key
+                  ? 'border-primary bg-[rgba(255,255,255,.08)] text-white'
+                  : 'border-transparent text-nav-inactive',
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <ul class="flex items-center gap-4 px-[20px] py-[16px] font-mono text-[13px] text-secondary-text">
+      {socialLinks.map((social, i) => (
+        <li class="flex items-center gap-4">
+          <a href={social.href} class="hover:text-primary" target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+            {social.label}
+          </a>
+          {i < socialLinks.length - 1 && <span aria-hidden="true">·</span>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const label = document.querySelector('[data-menu-toggle-label]');
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.classList.toggle('hidden', !open);
+      menu.classList.toggle('flex', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if (label) label.textContent = open ? 'Close' : 'Menu';
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(menu.classList.contains('hidden'));
+    });
+
+    const desktopQuery = window.matchMedia('(min-width: 760px)');
+    desktopQuery.addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+  }
+</script>

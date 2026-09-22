@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/BaseLayout.astro';
-import HeaderNav from '../components/HeaderNav.astro';
 
 import ProfilePicture from '../images/victortorres.jpg';
 
@@ -12,9 +11,9 @@ const description = "Victor's personal website"
 <Layout
 	title={title}
 	description={description}
+	current="home"
 >
-	<HeaderNav current="home"/>
-	<main class="container flex flex-col justify-center grow px-4 mx-auto max-w-[800px]">
+	<div class="container flex flex-col justify-center grow px-4 mx-auto max-w-[800px]">
 		<Image
 			src={ProfilePicture}
 			alt="Victor Torres profile picture"
@@ -39,5 +38,5 @@ const description = "Victor's personal website"
 				<a href="/about" class="underline">Learn more about me</a>
 			</div>
 		</div>
-	</main>
+	</div>
 </Layout>
