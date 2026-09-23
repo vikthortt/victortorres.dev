@@ -11,7 +11,6 @@ const cards = [
 	{ href: '/blog', title: 'Notes', description: 'Writing on frontend & React' },
 	{ href: '/projects', title: 'Projects', description: "Things I've built" },
 	{ href: '/now', title: 'Now', description: "What I'm up to today" },
-	{ href: '/uses', title: 'Uses', description: 'My toolkit' },
 ]
 ---
 
@@ -24,21 +23,21 @@ const cards = [
 		<Image
 			src={ProfilePicture}
 			alt="Victor Torres profile picture"
-			width={76}
-			height={76}
+			width={112}
+			height={112}
 			class="rounded-full border border-border mb-6"
 		/>
-		<h1 class="font-heading font-semibold text-[clamp(28px,6vw,34px)] leading-[1.2] text-primary-text">
-			Hi, I'm Victor.
+		<h1 class="font-heading font-semibold text-[clamp(28px,6vw,36px)] leading-[1.2] text-primary-text">
+			Hi, I'm Victor Torres.
 		</h1>
-		<p class="font-body text-[16.5px] leading-[1.6] text-body-text max-w-[440px] mt-4">
+		<p class="font-body text-[16.5px] leading-[1.6] text-body-text max-w-[460px] mt-4">
 			Frontend developer building fast, accessible interfaces. I write about the messy parts of shipping good UI.
 		</p>
-		<div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-[14px] max-w-[480px] w-full mt-8">
+		<div class="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[14px] max-w-[600px] w-full mt-8">
 			{cards.map((card) => (
 				<a
 					href={card.href}
-					class="bg-surface border border-border rounded-[8px] p-[18px] text-left hover:border-primary"
+					class="bg-surface border border-border rounded-[8px] p-[18px] text-left hover:border-primary-tag-border"
 				>
 					<h2 class="font-heading font-semibold text-[16px] text-primary-text">{card.title}</h2>
 					<p class="font-body text-[13.5px] leading-[1.5] text-secondary-text mt-1">{card.description}</p>

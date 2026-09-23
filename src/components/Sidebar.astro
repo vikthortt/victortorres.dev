@@ -1,4 +1,6 @@
 ---
+import SocialLinks from './SocialLinks.astro';
+
 interface Props {
   current: string;
 }
@@ -10,16 +12,10 @@ const navItems = [
   { key: 'notes', label: 'Notes', href: '/blog' },
   { key: 'projects', label: 'Projects', href: '/projects' },
   { key: 'about', label: 'About', href: '/about' },
-  { key: 'uses', label: 'Uses', href: '/uses' },
   { key: 'now', label: 'Now', href: '/now' },
   { key: 'resources', label: 'Resources', href: '/resources' },
+  { key: 'uses', label: 'Uses', href: '/uses' },
 ] as const;
-
-const socialLinks = [
-  { label: 'GitHub', href: 'https://github.com/vikthortt' },
-  { label: 'X', href: 'https://x.com/vikthortt' },
-  { label: 'Email', href: 'mailto:hello@victortorres.dev' },
-];
 ---
 
 <!-- Desktop sidebar -->
@@ -52,16 +48,7 @@ const socialLinks = [
       </ul>
     </nav>
   </div>
-  <ul class="flex items-center gap-4 font-mono text-[12.5px] text-secondary-text">
-    {socialLinks.map((social, i) => (
-      <li class="flex items-center gap-4">
-        <a href={social.href} class="hover:text-primary" target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
-          {social.label}
-        </a>
-        {i < socialLinks.length - 1 && <span aria-hidden="true">·</span>}
-      </li>
-    ))}
-  </ul>
+  <SocialLinks buttonSize={38} />
 </aside>
 
 <!-- Mobile top bar -->
@@ -104,16 +91,9 @@ const socialLinks = [
         ))}
       </ul>
     </nav>
-    <ul class="flex items-center gap-4 px-[20px] py-[16px] font-mono text-[13px] text-secondary-text">
-      {socialLinks.map((social, i) => (
-        <li class="flex items-center gap-4">
-          <a href={social.href} class="hover:text-primary" target={social.href.startsWith('http') ? '_blank' : undefined} rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
-            {social.label}
-          </a>
-          {i < socialLinks.length - 1 && <span aria-hidden="true">·</span>}
-        </li>
-      ))}
-    </ul>
+    <div class="px-[20px] py-[16px]">
+      <SocialLinks buttonSize={44} />
+    </div>
   </div>
 </div>
 
