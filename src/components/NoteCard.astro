@@ -1,0 +1,83 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Icon from './Icon.astro';
+
+export interface Props {
+  id: string;
+  url: string;
+  title: string;
+  dek: string;
+  category: string;
+  date: Date;
+  readingTime: number;
+  tags?: string[];
+  cover?: string;
+  coverAlt?: string;
+  featured?: boolean;
+  /** A second, initially-hidden render of the featured post inside the main list, unhidden by client JS once a filter is active. */
+  hiddenDuplicate?: boolean;
+}
+
+const { id, url, title, dek, category, date, readingTime, tags, cover, coverAlt, featured, hiddenDuplicate } = Astro.props as Props;
+
+const formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const searchHaystack = [title, dek, category, ...(tags ?? [])].join(' ').toLowerCase();
+
+const covers = cover ? import.meta.glob<{ default: ImageMetadata }>(`/src/images/**/*.{jpeg,jpg,png}`) : undefined;
+const coverImage = covers && cover && `/src/images/${cover}` in covers ? await covers[`/src/images/${cover}`]() : undefined;
+---
+<article
+  data-note-card
+  data-id={id}
+  data-category={category}
+  data-tags={(tags ?? []).join(',')}
+  data-search={searchHaystack}
+  data-featured-duplicate={hiddenDuplicate ? 'true' : undefined}
+  class:list={[
+    'flex flex-wrap gap-4 rounded-[10px] border bg-surface p-[14px]',
+    featured ? 'border-primary-tag-border' : 'border-border',
+    hiddenDuplicate && 'hidden',
+  ]}
+>
+  {coverImage && (
+    <div class="flex-[1_1_200px] aspect-[4/3] overflow-hidden rounded-[6px]">
+      <Image
+        src={coverImage.default}
+        alt={coverAlt || title}
+        width={400}
+        height={300}
+        class="h-full w-full object-cover"
+      />
+    </div>
+  )}
+  <div class="flex-[3_1_300px] min-w-0">
+    <p class="font-mono font-semibold text-[11.5px] uppercase tracking-[.06em] text-primary">
+      {featured ? `Featured · ${category}` : category}
+    </p>
+    <a href={url} class="block font-heading font-semibold text-[19px] leading-[1.35] text-primary-text hover:text-primary mt-1">
+      {title}
+    </a>
+    <p class="font-body text-[14.5px] leading-[1.55] text-secondary-text line-clamp-2 mt-1">
+      {dek}
+    </p>
+    <div class="flex flex-wrap items-center gap-3 font-mono text-[12.5px] text-muted-text mt-3">
+      <span class="inline-flex items-center gap-1"><Icon name="calendar" />{formattedDate}</span>
+      <span class="inline-flex items-center gap-1"><Icon name="clock" />{readingTime} min read</span>
+    </div>
+    {tags && tags.length > 0 && (
+      <div class="flex flex-wrap items-center gap-2 mt-2">
+        <Icon name="tag" class="text-muted-text" />
+        {tags.map((tag) => (
+          <a
+            href={`/blog?tag=${tag}`}
+            data-tag-link={tag}
+            class="font-mono text-[12.5px] text-primary underline hover:text-primary-hover"
+          >
+            {tag}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>

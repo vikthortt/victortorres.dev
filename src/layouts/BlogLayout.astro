@@ -19,18 +19,16 @@ const post = postEntry.data
 >
   <PostHeader
     title={post.title}
+    dek={post.description}
+    category={post.category}
     publishDate={post.created_date.toDateString()}
     modifiedDate={post.modified_date?.toDateString()}
     tags={post.tags}
     readingTime={post.reading_time}
     image={post.image}
     imageAlt={post.image_alt || post.title}
-    imageCredit={post.image_credit}
-    imageCreditUrl={post.image_credit_url}
-    imageCreditSource={post.image_credit_source}
-    imageCreditSourceUrl={post.image_credit_source_url}
   />
-  <div class="mt-6">
+  <div class="mt-6 max-w-[660px]">
     <slot />
   </div>
 </BaseLayout>
