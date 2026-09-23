@@ -3,15 +3,10 @@ import Layout from '../layouts/BaseLayout.astro';
 import { Image } from "astro:assets";
 
 import ProfilePicture from '../images/victortorres.jpg';
+import { EXPERIENCE, SKILLS, EDUCATION } from '../data/resume';
 
 const title = 'About'
-const description = "About Victor Torres"
-
-const socialLinks = [
-	{ label: 'GitHub', href: 'https://github.com/vikthortt' },
-	{ label: 'X', href: 'https://x.com/vikthortt' },
-	{ label: 'Email', href: 'mailto:hello@victortorres.dev' },
-];
+const description = "About Victor Torres — bio and résumé."
 ---
 
 <Layout
@@ -19,7 +14,6 @@ const socialLinks = [
 	description={description}
 	current="about"
 >
-	<h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">About</h1>
 	<div class="flex flex-wrap items-start gap-6">
 		<Image
 			src={ProfilePicture}
@@ -32,21 +26,58 @@ const socialLinks = [
 			<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
 				Hey, I'm Victor — a software developer based in Guadalajara, Mexico. I build clean, scalable and delightful web applications, and I write about the messy parts of shipping good UI: the frameworks, tradeoffs and full-stack workflows I run into along the way.
 			</p>
-			<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
-				This site is my digital lab — part archive, part playground, mostly written for future me. When I'm not coding, I'm probably studying something new, reading, watching anime, or playing a video game. Thanks for being here.
-			</p>
-			<div class="flex flex-wrap gap-4 font-mono text-[14px] text-primary">
-				{socialLinks.map((social) => (
-					<a
-						href={social.href}
-						class="hover:text-primary-hover"
-						target={social.href.startsWith('http') ? '_blank' : undefined}
-						rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-					>
-						{social.label}
-					</a>
-				))}
+			<div class="flex flex-wrap gap-3">
+				<a
+					href="/resume.pdf"
+					class="inline-flex h-[44px] items-center rounded-[7px] bg-primary px-6 font-heading font-semibold text-on-primary"
+				>
+					Download résumé (PDF)
+				</a>
+				<a
+					href="mailto:hello@victortorres.dev"
+					class="inline-flex h-[44px] items-center rounded-[7px] border border-border px-6 font-heading font-semibold text-primary-text"
+				>
+					Get in touch
+				</a>
 			</div>
+		</div>
+	</div>
+
+	<div class="mt-12">
+		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Experience</h2>
+		<div class="flex flex-col gap-6">
+			{EXPERIENCE.map((entry) => (
+				<div class="flex flex-wrap gap-4">
+					<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.years}</p>
+					<div class="flex-1 min-w-[200px]">
+						<p class="font-heading font-semibold text-[16px] text-primary-text">{entry.role} · {entry.company}</p>
+						<p class="font-body text-[15px] leading-[1.6] text-secondary-text mt-1">{entry.summary}</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+
+	<div class="mt-10">
+		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Skills</h2>
+		<div class="flex flex-wrap gap-2">
+			{SKILLS.map((skill) => (
+				<span class="font-mono text-[12.5px] text-primary border border-primary-tag-border rounded-[20px] px-3 py-1">
+					{skill}
+				</span>
+			))}
+		</div>
+	</div>
+
+	<div class="mt-10">
+		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Education</h2>
+		<div class="flex flex-col gap-4">
+			{EDUCATION.map((entry) => (
+				<div class="flex flex-wrap gap-4">
+					<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.years}</p>
+					<p class="font-body text-[15px] text-body-text">{entry.degree} · {entry.school}</p>
+				</div>
+			))}
 		</div>
 	</div>
 </Layout>
