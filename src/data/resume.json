@@ -1,0 +1,24 @@
+{
+  "experience": [
+    {
+      "years": "2023–Present",
+      "role": "Frontend Developer",
+      "company": "Company Name",
+      "summary": "Placeholder summary of responsibilities and impact in this role."
+    },
+    {
+      "years": "2020–2023",
+      "role": "Software Developer",
+      "company": "Previous Company",
+      "summary": "Placeholder summary of responsibilities and impact in this role."
+    }
+  ],
+  "skills": ["TypeScript", "React", "Astro", "Tailwind CSS", "Node.js"],
+  "education": [
+    {
+      "years": "2016–2020",
+      "degree": "B.S. in Computer Science",
+      "school": "University Name"
+    }
+  ]
+}

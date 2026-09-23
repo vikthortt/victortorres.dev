@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { RESOURCES } from '../data/resources';
+import site from '../data/site.json';
+import RESOURCES from '../data/resources.json';
 
-const title = 'Resources'
-const description = "Victor Torres's list of useful content — blogs, books, tools and courses."
+const { title, description } = site.pages.resources;
 
 const types = ['Blog', 'Book', 'Tool', 'Course'] as const;
 
@@ -16,7 +16,7 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   description={description}
   current="resources"
 >
-  <h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">Resources</h1>
+  <h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">{title}</h1>
 
   <form method="get" action="/resources" data-search-form>
     <div class="relative">

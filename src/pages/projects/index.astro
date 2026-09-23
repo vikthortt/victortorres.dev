@@ -3,9 +3,9 @@ import Layout from '../../layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
 import Icon from '../../components/Icon.astro';
+import site from '../../data/site.json';
 
-const title = 'Projects'
-const description = "Things I've built."
+const { title, description } = site.pages.projects;
 
 const languages = ['TypeScript', 'React', 'Rust'] as const;
 
@@ -25,7 +25,7 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   description={description}
   current="projects"
 >
-  <h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">Projects</h1>
+  <h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">{title}</h1>
 
   <form method="get" action="/projects" data-search-form>
     <div class="relative">

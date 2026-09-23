@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
-import { USES } from '../data/uses';
+import site from '../data/site.json';
+import USES from '../data/uses.json';
 
-const title = 'Uses'
-const description = "Victor Torres's toolkit — hardware and software."
+const { title, description } = site.pages.uses;
 ---
 
 <Layout
@@ -11,7 +11,7 @@ const description = "Victor Torres's toolkit — hardware and software."
 	description={description}
 	current="uses"
 >
-	<h1 class="font-heading font-semibold text-[28px] text-primary-text mb-8">Uses</h1>
+	<h1 class="font-heading font-semibold text-[28px] text-primary-text mb-8">{title}</h1>
 
 	<div class="flex flex-col gap-8">
 		{USES.map((group) => (

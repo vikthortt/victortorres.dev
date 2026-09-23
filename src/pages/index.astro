@@ -1,17 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
 
 import ProfilePicture from '../images/victortorres.jpg';
 
-const title = 'Victor Torres'
-const description = "Victor's personal website"
-
-const cards = [
-	{ href: '/blog', title: 'Notes', description: 'Writing on frontend & React' },
-	{ href: '/projects', title: 'Projects', description: "Things I've built" },
-	{ href: '/now', title: 'Now', description: "What I'm up to today" },
-]
+const { title, description } = site.pages.home;
+const { heading, intro, cards } = site.home;
 ---
 
 <Layout
@@ -28,10 +23,10 @@ const cards = [
 			class="rounded-full border border-border mb-6"
 		/>
 		<h1 class="font-heading font-semibold text-[clamp(28px,6vw,36px)] leading-[1.2] text-primary-text">
-			Hi, I'm Victor Torres.
+			{heading}
 		</h1>
 		<p class="font-body text-[16.5px] leading-[1.6] text-body-text max-w-[460px] mt-4">
-			Frontend developer building fast, accessible interfaces. I write about the messy parts of shipping good UI.
+			{intro}
 		</p>
 		<div class="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[14px] max-w-[600px] w-full mt-8">
 			{cards.map((card) => (

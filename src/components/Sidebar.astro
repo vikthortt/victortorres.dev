@@ -1,5 +1,6 @@
 ---
 import SocialLinks from './SocialLinks.astro';
+import site from '../data/site.json';
 
 interface Props {
   current: string;
@@ -25,7 +26,7 @@ const navItems = [
       <svg class="fill-primary shrink-0" viewBox="0 0 64 64" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
         <path d="M30.5424 33.4179L22.3559 48H12.0592L10.5455 33.4179H8.58417L6.75076 16H17.9004L19.2008 31.3709C22.0789 26.3183 24.6798 21.0312 27.5365 16H38.4088L28.6236 33.4179H30.5424ZM46.7398 33.4179L43.4993 48H32.6903L36.016 33.4179H34.076L36.2292 24.0802H27.7015L29.5775 16H57.2492L55.4372 24.0802H46.9312L44.842 33.4179H46.7398Z" />
       </svg>
-      <span class="font-heading font-semibold text-[16px] text-white">Victor Torres</span>
+      <span class="font-heading font-semibold text-[16px] text-white">{site.name}</span>
     </a>
     <nav>
       <ul class="flex flex-col gap-1">
@@ -58,7 +59,7 @@ const navItems = [
       <svg class="fill-primary shrink-0" viewBox="0 0 64 64" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
         <path d="M30.5424 33.4179L22.3559 48H12.0592L10.5455 33.4179H8.58417L6.75076 16H17.9004L19.2008 31.3709C22.0789 26.3183 24.6798 21.0312 27.5365 16H38.4088L28.6236 33.4179H30.5424ZM46.7398 33.4179L43.4993 48H32.6903L36.016 33.4179H34.076L36.2292 24.0802H27.7015L29.5775 16H57.2492L55.4372 24.0802H46.9312L44.842 33.4179H46.7398Z" />
       </svg>
-      <span class="font-heading font-semibold text-[16px] text-white">Victor Torres</span>
+      <span class="font-heading font-semibold text-[16px] text-white">{site.name}</span>
     </a>
     <button
       type="button"

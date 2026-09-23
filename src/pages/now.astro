@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
-import { NOW } from '../data/now';
+import site from '../data/site.json';
+import NOW from '../data/now.json';
 
-const title = 'Now'
-const description = "What Victor Torres is up to right now."
+const { title, description } = site.pages.now;
 
 const [latest, ...earlier] = NOW;
 

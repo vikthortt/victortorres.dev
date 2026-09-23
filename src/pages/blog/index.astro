@@ -3,9 +3,9 @@ import Layout from '../../layouts/BaseLayout.astro'
 import { getCollection } from "astro:content";
 import NoteCard from '../../components/NoteCard.astro';
 import Icon from '../../components/Icon.astro';
+import site from '../../data/site.json';
 
-const title = 'Notes'
-const description = 'Writing on frontend development and React — the messy parts of shipping good UI.'
+const { title, description, subtitle } = site.pages.notes;
 
 const categories = ['React', 'CSS', 'Performance', 'Accessibility'] as const;
 
@@ -35,8 +35,8 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   description={description}
   current="notes"
 >
-  <h1 class="font-heading font-semibold text-[28px] text-primary-text">Notes</h1>
-  <p class="font-body text-[15px] text-secondary-text mt-1">Writing on frontend development and React.</p>
+  <h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
+  <p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
   <form method="get" action="/blog" data-search-form class="mt-6">
     <div class="relative">

@@ -1,0 +1,52 @@
+{
+  "name": "Victor Torres",
+  "social": {
+    "github": "https://github.com/vikthortt",
+    "linkedin": "https://linkedin.com/in/victortt",
+    "email": "hello@victortorres.dev"
+  },
+  "resumeUrl": "/resume.pdf",
+  "pages": {
+    "home": {
+      "title": "Victor Torres",
+      "description": "Victor's personal website"
+    },
+    "notes": {
+      "title": "Notes",
+      "description": "Writing on frontend development and React — the messy parts of shipping good UI.",
+      "subtitle": "Writing on frontend development and React."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Things I've built."
+    },
+    "about": {
+      "title": "About",
+      "description": "About Victor Torres — bio and résumé."
+    },
+    "now": {
+      "title": "Now",
+      "description": "What Victor Torres is up to right now."
+    },
+    "resources": {
+      "title": "Resources",
+      "description": "Victor Torres's list of useful content — blogs, books, tools and courses."
+    },
+    "uses": {
+      "title": "Uses",
+      "description": "Victor Torres's toolkit — hardware and software."
+    }
+  },
+  "home": {
+    "heading": "Hi, I'm Victor Torres.",
+    "intro": "Frontend developer building fast, accessible interfaces. I write about the messy parts of shipping good UI.",
+    "cards": [
+      { "href": "/blog", "title": "Notes", "description": "Writing on frontend & React" },
+      { "href": "/projects", "title": "Projects", "description": "Things I've built" },
+      { "href": "/now", "title": "Now", "description": "What I'm up to today" }
+    ]
+  },
+  "about": {
+    "bio": "Hey, I'm Victor — a software developer based in Guadalajara, Mexico. I build clean, scalable and delightful web applications, and I write about the messy parts of shipping good UI: the frameworks, tradeoffs and full-stack workflows I run into along the way."
+  }
+}

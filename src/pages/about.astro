@@ -3,10 +3,12 @@ import Layout from '../layouts/BaseLayout.astro';
 import { Image } from "astro:assets";
 
 import ProfilePicture from '../images/victortorres.jpg';
-import { EXPERIENCE, SKILLS, EDUCATION } from '../data/resume';
+import site from '../data/site.json';
+import resume from '../data/resume.json';
 
-const title = 'About'
-const description = "About Victor Torres — bio and résumé."
+const { title, description } = site.pages.about;
+const { bio } = site.about;
+const { experience, skills, education } = resume;
 ---
 
 <Layout
@@ -24,17 +26,17 @@ const description = "About Victor Torres — bio and résumé."
 		/>
 		<div class="flex-1 min-w-[280px]">
 			<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
-				Hey, I'm Victor — a software developer based in Guadalajara, Mexico. I build clean, scalable and delightful web applications, and I write about the messy parts of shipping good UI: the frameworks, tradeoffs and full-stack workflows I run into along the way.
+				{bio}
 			</p>
 			<div class="flex flex-wrap gap-3">
 				<a
-					href="/resume.pdf"
+					href={site.resumeUrl}
 					class="inline-flex h-[44px] items-center rounded-[7px] bg-primary px-6 font-heading font-semibold text-on-primary"
 				>
 					Download résumé (PDF)
 				</a>
 				<a
-					href="mailto:hello@victortorres.dev"
+					href={`mailto:${site.social.email}`}
 					class="inline-flex h-[44px] items-center rounded-[7px] border border-border px-6 font-heading font-semibold text-primary-text"
 				>
 					Get in touch
@@ -46,7 +48,7 @@ const description = "About Victor Torres — bio and résumé."
 	<div class="mt-12">
 		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Experience</h2>
 		<div class="flex flex-col gap-6">
-			{EXPERIENCE.map((entry) => (
+			{experience.map((entry) => (
 				<div class="flex flex-wrap gap-4">
 					<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.years}</p>
 					<div class="flex-1 min-w-[200px]">
@@ -61,7 +63,7 @@ const description = "About Victor Torres — bio and résumé."
 	<div class="mt-10">
 		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Skills</h2>
 		<div class="flex flex-wrap gap-2">
-			{SKILLS.map((skill) => (
+			{skills.map((skill) => (
 				<span class="font-mono text-[12.5px] text-primary border border-primary-tag-border rounded-[20px] px-3 py-1">
 					{skill}
 				</span>
@@ -72,7 +74,7 @@ const description = "About Victor Torres — bio and résumé."
 	<div class="mt-10">
 		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Education</h2>
 		<div class="flex flex-col gap-4">
-			{EDUCATION.map((entry) => (
+			{education.map((entry) => (
 				<div class="flex flex-wrap gap-4">
 					<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.years}</p>
 					<p class="font-body text-[15px] text-body-text">{entry.degree} · {entry.school}</p>
