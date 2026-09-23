@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const { name, description, language, years, license, githubUrl, writeupUrl, icon, image, imageAlt } = project.data;
+const { name, description, language, projectStatus, years, license, githubUrl, writeupUrl, icon, image, imageAlt } = project.data;
 const { Content } = await render(project);
 
 const icons = icon ? import.meta.glob<{ default: ImageMetadata }>(`/src/images/**/*.{jpeg,jpg,png,svg}`) : undefined;
@@ -47,6 +47,8 @@ const heroImage = images && image && `/src/images/${image}` in images ? await im
     <span aria-hidden="true">·</span>
     <span>{years}</span>
     <span aria-hidden="true">·</span>
+    <span class:list={[projectStatus === 'Active' && 'text-primary']}>{projectStatus}</span>
+    <span aria-hidden="true">·</span>
     <span>{license} license</span>
   </p>
 
@@ -56,7 +58,7 @@ const heroImage = images && image && `/src/images/${image}` in images ? await im
         href={githubUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex h-[44px] items-center rounded-[8px] bg-primary px-6 font-heading font-semibold text-on-primary"
+        class="inline-flex h-[44px] items-center rounded-[7px] bg-primary px-6 font-heading font-semibold text-on-primary"
       >
         View on GitHub
       </a>
@@ -64,7 +66,7 @@ const heroImage = images && image && `/src/images/${image}` in images ? await im
     {writeupUrl && (
       <a
         href={writeupUrl}
-        class="inline-flex h-[44px] items-center rounded-[8px] border border-border px-6 font-heading font-semibold text-primary-text"
+        class="inline-flex h-[44px] items-center rounded-[7px] border border-border px-6 font-heading font-semibold text-primary-text"
       >
         Read the writeup
       </a>
