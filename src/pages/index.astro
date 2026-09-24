@@ -41,9 +41,11 @@ const cards = allCards.filter((card) => hasContent[card.href] ?? true);
 		<h1 class="font-heading font-semibold text-[clamp(28px,6vw,36px)] leading-[1.2] text-primary-text">
 			{heading}
 		</h1>
-		<p class="font-body text-[16.5px] leading-[1.6] text-body-text max-w-[460px] mt-4">
-			{intro}
-		</p>
+		{intro.map((paragraph) => (
+			<p class="font-body text-[16.5px] leading-[1.6] text-body-text max-w-[460px] mt-4">
+				{paragraph}
+			</p>
+		))}
 		<div class="grid grid-cols-[repeat(auto-fit,minmax(170px,1fr))] gap-[14px] max-w-[600px] w-full mt-8">
 			{cards.map((card) => (
 				<a

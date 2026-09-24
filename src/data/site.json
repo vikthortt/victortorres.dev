@@ -12,16 +12,16 @@
     },
     "notes": {
       "title": "Notes",
-      "description": "Writing on frontend development and React — the messy parts of shipping good UI.",
-      "subtitle": "Writing on frontend development and React."
+      "description": "Victor Torres's thoughts on software development and his journey of building modern web applications",
+      "subtitle": "My thoughts on software development and my journey of building modern web applications."
     },
     "projects": {
       "title": "Projects",
-      "description": "Things I've built."
+      "description": "Things Victor Torres has built"
     },
     "about": {
       "title": "About",
-      "description": "About Victor Torres — bio and résumé."
+      "description": "About Victor Torres"
     },
     "now": {
       "title": "Now",
@@ -38,14 +38,36 @@
   },
   "home": {
     "heading": "Hey there, I'm Victor 👋",
-    "intro": "I'm a software developer from Guadalajara, Mexico, writing about Vue, AWS, and building modern web apps. Follow along as I explore frameworks, best practices, and full-stack workflows.",
+    "intro": [
+      "I'm a software developer from Guadalajara, Mexico, writing about Vue, AWS, and building modern web apps.",
+      "Follow along as I explore frameworks, best practices, and full-stack workflows."
+    ],
     "cards": [
-      { "href": "/blog", "title": "Notes", "description": "Writing on frontend & React" },
-      { "href": "/projects", "title": "Projects", "description": "Things I've built" },
-      { "href": "/now", "title": "Now", "description": "What I'm up to today" }
+      {
+        "href": "/blog",
+        "title": "Notes",
+        "description": "My thoughts on software development and my journey of building modern web applications"
+      },
+      {
+        "href": "/projects",
+        "title": "Projects",
+        "description": "Things I've built"
+      },
+      {
+        "href": "/now",
+        "title": "Now",
+        "description": "What I'm up to these days"
+      }
     ]
   },
   "about": {
-    "bio": "I'm a software developer based in Guadalajara, Mexico, passionate about building clean, scalable and delightful web applications. I believe in sharing knowledge freely, making things people actually use, and writing code that other developers — including my future self — won't hate six months later. This site is my digital lab: part archive, part playground for what I learn while working with modern technologies. When I'm not coding, I'm probably studying something new, reading a book, watching anime, or playing a video game."
+    "bio": [
+      "Hey! I'm Victor Torres 👋",
+      "I'm a software developer based in Guadalajara, Mexico, passionate about building clean, scalable, and delightful web applications. I believe in sharing knowledge freely, making things people actually use, and writing code that other developers, including my future self, won't hate you for six months later.",
+      "This blog is where I publish my deep dives, side projects, and ideas worth sharing — mostly for future me, and hopefully useful for others too.",
+      "I created this space to share what I learn while working with modern technologies as I grow into a more well-rounded full-stack developer. I'm not trying to be perfect — I'm trying to document the journey, stay curious, and maybe, just maybe, help a few devs along the way.",
+      "This blog is my digital lab — part archive, part playground. If it helps someone else solve a problem, build a better app, or even just feel less alone in the learning curve, that's a win.",
+      "When I'm not coding, I'm probably studying something new, reading a book, watching anime or playing some video game."
+    ]
   }
 }

@@ -25,9 +25,11 @@ const { experience, skills, education, certifications } = resume;
 			class="rounded-[14px] border border-border shrink-0 object-cover"
 		/>
 		<div class="flex-1 min-w-[280px]">
-			<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
-				{bio}
-			</p>
+			{bio.map((paragraph) => (
+				<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
+					{paragraph}
+				</p>
+			))}
 		</div>
 	</div>
 
