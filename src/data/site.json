@@ -22,12 +22,13 @@
     },
     "about": {
       "title": "About",
-      "description": "About Victor Torres"
+      "description": "About Victor Torres",
+      "subtitle": "Learn more about me, my journey, and what drives me as a developer."
     },
     "now": {
       "title": "Now",
       "description": "What Victor Torres is up to right now.",
-      "subtitle": "Short updates on what I'm working on, studying and learning."
+      "subtitle": "Short updates on what I'm working on, studying and reading."
     },
     "resources": {
       "title": "Resources",
