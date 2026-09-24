@@ -23,7 +23,6 @@ const allNavItems = [
 ] as const;
 
 const navItems = allNavItems.filter((item) => item.show);
-const year = new Date().getFullYear();
 ---
 
 <!-- Desktop sidebar -->
@@ -56,12 +55,7 @@ const year = new Date().getFullYear();
       </ul>
     </nav>
   </div>
-  <div>
-    <SocialLinks buttonSize={38} />
-    <p class="font-mono text-[11px] leading-[1.6] text-nav-inactive mt-4">
-      © {year} {site.name}.<br />Built with Astro &amp; Tailwind CSS.
-    </p>
-  </div>
+  <SocialLinks buttonSize={38} />
 </aside>
 
 <!-- Mobile top bar -->
@@ -106,9 +100,6 @@ const year = new Date().getFullYear();
     </nav>
     <div class="px-[20px] py-[16px]">
       <SocialLinks buttonSize={44} />
-      <p class="font-mono text-[11px] leading-[1.6] text-nav-inactive mt-4">
-        © {year} {site.name}. Built with Astro &amp; Tailwind CSS.
-      </p>
     </div>
   </div>
 </div>

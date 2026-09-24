@@ -17,7 +17,8 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "Things Victor Torres has built"
+      "description": "Things Victor Torres has built",
+      "subtitle": "Open source work, active and archived."
     },
     "about": {
       "title": "About",
@@ -25,15 +26,18 @@
     },
     "now": {
       "title": "Now",
-      "description": "What Victor Torres is up to right now."
+      "description": "What Victor Torres is up to right now.",
+      "subtitle": "Short updates on what I'm working on, studying and learning."
     },
     "resources": {
       "title": "Resources",
-      "description": "Victor Torres's list of useful content — blogs, books, tools and courses."
+      "description": "Victor Torres's list of useful content — blogs, books, tools and courses.",
+      "subtitle": "Blogs, books, tools and courses that have helped me along the way."
     },
     "uses": {
       "title": "Uses",
-      "description": "Victor Torres's toolkit — hardware and software."
+      "description": "Victor Torres's toolkit — hardware and software.",
+      "subtitle": "The hardware and software I use day to day."
     }
   },
   "home": {

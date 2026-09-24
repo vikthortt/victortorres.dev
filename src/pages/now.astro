@@ -1,9 +1,10 @@
 ---
 import Layout from '../layouts/BaseLayout.astro';
+import EmptyState from '../components/EmptyState.astro';
 import site from '../data/site.json';
 import NOW_DATA from '../data/now.json';
 
-const { title, description } = site.pages.now;
+const { title, description, subtitle } = site.pages.now;
 
 interface NowEntry {
 	date: string;
@@ -26,7 +27,21 @@ const kindColors: Record<string, string> = {
 	description={description}
 	current="now"
 >
-	<div class="max-w-[620px]">
+	<h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
+	<p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
+
+	<div class="max-w-[620px] mt-8">
+		{!latest && (
+			<EmptyState
+				icon="clock"
+				title="No updates yet"
+				message="This page tracks what I'm focused on right now. Check back soon, or read my latest notes in the meantime."
+				buttonLabel="Read my notes"
+				buttonHref="/blog"
+				buttonVariant="secondary"
+			/>
+		)}
+
 		{latest && (
 			<div class="rounded-[12px] border border-primary-tag-border bg-surface p-[20px]">
 				<div class="flex items-center gap-3">

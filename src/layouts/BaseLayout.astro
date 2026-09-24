@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import '../styles/global.css';
 import Sidebar from '../components/Sidebar.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -18,12 +19,15 @@ const { title, description, current, centered = false } = Astro.props;
 </head>
 <body class="bg-background text-body-text min-h-screen min-[760px]:flex">
   <Sidebar current={current} />
-  <main class:list={['min-w-0 flex-1', centered && 'min-[760px]:flex min-[760px]:flex-col']}>
-    <div class:list={[
-      'mx-auto w-full max-w-[800px] px-[clamp(20px,5vw,56px)] pt-[clamp(32px,7vw,64px)] pb-[64px]',
-      centered && 'min-[760px]:flex-1 min-[760px]:flex min-[760px]:flex-col min-[760px]:justify-center',
-    ]}>
-      <slot />
+  <main class="min-w-0 flex-1">
+    <div class="mx-auto w-full max-w-[800px] px-[clamp(20px,5vw,56px)] pt-[clamp(32px,7vw,64px)] pb-[64px] min-[760px]:flex min-[760px]:flex-col min-[760px]:h-full">
+      <div class:list={[
+        'min-w-0 min-[760px]:flex-1',
+        centered && 'min-[760px]:flex min-[760px]:flex-col min-[760px]:justify-center',
+      ]}>
+        <slot />
+      </div>
+      <Footer />
     </div>
   </main>
 </body>

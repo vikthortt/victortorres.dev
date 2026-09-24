@@ -1,0 +1,9 @@
+---
+import site from '../data/site.json';
+
+const year = new Date().getFullYear();
+---
+<div class="flex flex-wrap justify-between gap-x-6 gap-y-2 mt-[72px] pt-5 border-t border-menu-divider font-mono text-[12.5px] leading-[1.5] text-muted-text">
+  <span>© {year} {site.name}</span>
+  <span>Built with Astro &amp; Tailwind CSS</span>
+</div>

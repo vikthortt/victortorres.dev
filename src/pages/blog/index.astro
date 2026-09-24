@@ -2,6 +2,7 @@
 import Layout from '../../layouts/BaseLayout.astro'
 import { getCollection } from "astro:content";
 import NoteCard from '../../components/NoteCard.astro';
+import EmptyState from '../../components/EmptyState.astro';
 import Icon from '../../components/Icon.astro';
 import site from '../../data/site.json';
 
@@ -41,9 +42,16 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   <p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
   {allPublishedPosts.length === 0 && (
-    <p class="font-body text-[16px] leading-[1.6] text-secondary-text mt-8">
-      No notes yet — I'm still writing. Come back soon.
-    </p>
+    <div class="mt-8">
+      <EmptyState
+        icon="pen"
+        title="No notes yet"
+        message="I'm writing the first one. Subscribe via RSS to get it when it's out."
+        buttonLabel="Subscribe via RSS"
+        buttonHref="/rss.xml"
+        buttonVariant="primary"
+      />
+    </div>
   )}
 
   {allPublishedPosts.length > 0 && showSearch && (
@@ -133,7 +141,16 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
         ))}
       </div>
 
-      <p data-empty-state class="hidden font-body text-[16px] text-secondary-text mt-8">No notes match your filters.</p>
+      <div data-empty-state class="hidden mt-8">
+        <EmptyState
+          icon="search"
+          title="No notes match"
+          message="Try a different search or clear the filters."
+          buttonLabel="Clear filters"
+          buttonHref="/blog"
+          buttonVariant="secondary"
+        />
+      </div>
     </Fragment>
   )}
 </Layout>

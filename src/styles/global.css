@@ -16,6 +16,7 @@
   --color-border: oklch(32% .012 245);
   --color-menu-divider: oklch(26% .012 245);
   --color-divider: oklch(30% .012 245);
+  --color-border-dashed: oklch(34% .012 245);
 
   /* Accent (mint) */
   --color-primary: oklch(74% .15 165);

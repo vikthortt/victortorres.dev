@@ -2,10 +2,11 @@
 import Layout from '../../layouts/BaseLayout.astro'
 import { getCollection } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
+import EmptyState from '../../components/EmptyState.astro';
 import Icon from '../../components/Icon.astro';
 import site from '../../data/site.json';
 
-const { title, description } = site.pages.projects;
+const { title, description, subtitle } = site.pages.projects;
 
 const languages = ['TypeScript', 'React', 'Rust'] as const;
 
@@ -27,48 +28,69 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   description={description}
   current="projects"
 >
-  <h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">{title}</h1>
+  <h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
+  <p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
-  {showSearch && (
-    <form method="get" action="/projects" data-search-form>
-      <div class="relative">
-        <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
-        <input
-          type="search"
-          name="q"
-          data-search-input
-          placeholder="Search projects..."
-          class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
-        />
-      </div>
-    </form>
-  )}
-
-  <div class="flex flex-wrap gap-2 mt-6" data-language-pills>
-    <a href="/projects" data-language-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
-    {languages.map((language) => (
-      <a href={`/projects?language=${language}`} data-language-pill={language} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{language}</a>
-    ))}
-  </div>
-
-  {projects.length > 0 ? (
-    <div class="flex flex-col gap-[18px] mt-8" data-project-grid>
-      {projects.map((project) => (
-        <ProjectCard
-          id={project.id}
-          url={`/projects/${project.id}`}
-          name={project.data.name}
-          description={project.data.description}
-          language={project.data.language}
-          projectStatus={project.data.projectStatus}
-        />
-      ))}
+  {projects.length === 0 ? (
+    <div class="mt-8">
+      <EmptyState
+        icon="box"
+        title="No public projects yet"
+        message="Side projects live on GitHub until they're ready to share here."
+        buttonLabel="View GitHub"
+        buttonHref={site.social.github}
+        buttonVariant="primary"
+      />
     </div>
   ) : (
-    <p class="font-body text-[16px] text-secondary-text mt-8">Nothing published yet — check back soon.</p>
-  )}
+    <Fragment>
+      {showSearch && (
+        <form method="get" action="/projects" data-search-form class="mt-6">
+          <div class="relative">
+            <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
+            <input
+              type="search"
+              name="q"
+              data-search-input
+              placeholder="Search projects..."
+              class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
+            />
+          </div>
+        </form>
+      )}
 
-  <p data-empty-state class="hidden font-body text-[16px] text-secondary-text mt-8">No projects match your filters.</p>
+      <div class="flex flex-wrap gap-2 mt-6" data-language-pills>
+        <a href="/projects" data-language-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
+        {languages.map((language) => (
+          <a href={`/projects?language=${language}`} data-language-pill={language} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{language}</a>
+        ))}
+      </div>
+
+      <div class="flex flex-col gap-[18px] mt-8" data-project-grid>
+        {projects.map((project) => (
+          <ProjectCard
+            id={project.id}
+            url={`/projects/${project.id}`}
+            name={project.data.name}
+            description={project.data.description}
+            language={project.data.language}
+            projectStatus={project.data.projectStatus}
+          />
+        ))}
+      </div>
+
+      <div data-empty-state class="hidden mt-8">
+        <EmptyState
+          icon="search"
+          title="No projects match"
+          message="Try a different search or clear the filters."
+          buttonLabel="Clear filters"
+          buttonHref="/projects"
+          buttonVariant="secondary"
+        />
+      </div>
+    </Fragment>
+  )}
 </Layout>
 
 <script>
@@ -113,7 +135,7 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
       pill.className = isActive ? pillActive : pillInactive;
     }
 
-    if (emptyState) emptyState.classList.toggle('hidden', cards.length === 0 || visibleCount > 0);
+    if (emptyState) emptyState.classList.toggle('hidden', visibleCount > 0);
     if (searchInput) searchInput.value = state.q;
   };
 
