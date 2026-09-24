@@ -3,7 +3,7 @@
     "title": "Angular",
     "by": "Google",
     "type": "Tool",
-    "note": "The first framework I used — I loved how easy it made building interactive apps with two-way data binding.",
+    "note": "AngularJS was the first framework I used, and I loved how easy it was to build interactive apps with two-way data binding. I adopted Angular 2+ immediately and still miss working with it sometimes.",
     "found": 2016,
     "url": "https://angular.io"
   },
@@ -11,7 +11,7 @@
     "title": "Vue.js",
     "by": "Evan You",
     "type": "Tool",
-    "note": "My main stack — I've been working with it for close to 5 years and I'm still in love with it.",
+    "note": "This is my main stack — I've been working with Vue for close to 5 years now, and I'm still in love with it.",
     "found": 2019,
     "url": "https://vuejs.org"
   },
@@ -19,7 +19,7 @@
     "title": "React",
     "by": "Meta",
     "type": "Tool",
-    "note": "Not my personal favorite, but the most widely used framework out there for good reasons.",
+    "note": "Not my personal favorite, but the most widely used framework out there for good reasons — a must-have in any developer's toolkit.",
     "found": 2018,
     "url": "https://react.dev"
   },
@@ -27,7 +27,7 @@
     "title": "Astro",
     "by": "Astro team",
     "type": "Tool",
-    "note": "My favorite static site generator — simple to build with and lets you mix multiple frameworks.",
+    "note": "So far my favorite static site generator. I like how simple it is to build with, and it lets you mix multiple frameworks in the same project.",
     "found": 2023,
     "url": "https://astro.build"
   },
@@ -35,7 +35,7 @@
     "title": "Tailwind CSS",
     "by": "Adam Wathan",
     "type": "Tool",
-    "note": "My go-to CSS framework, once you get used to its philosophy.",
+    "note": "My go-to CSS framework, once you get used to its philosophy — otherwise changing a style is a headache.",
     "found": 2021,
     "url": "https://tailwindcss.com"
   },
@@ -43,7 +43,7 @@
     "title": "Vite",
     "by": "Evan You",
     "type": "Tool",
-    "note": "If you ever worked with webpack, you know why I love Vite.",
+    "note": "If you've ever worked with webpack, you know why I love Vite.",
     "found": 2021,
     "url": "https://vitejs.dev"
   },
@@ -51,7 +51,7 @@
     "title": "Vitest",
     "by": "Anthony Fu",
     "type": "Tool",
-    "note": "A Vite-native testing framework that finally made unit testing not feel slow.",
+    "note": "A Vite-native testing framework. I used to skip unit tests because Jest always felt slow — with Vitest that's not an excuse anymore.",
     "found": 2022,
     "url": "https://vitest.dev"
   },
@@ -59,7 +59,7 @@
     "title": "Nuxt",
     "by": "NuxtLabs",
     "type": "Tool",
-    "note": "An incredible framework for building Vue apps — easy to start, powerful underneath.",
+    "note": "An incredible framework for building Vue apps. I spend most of my workdays in it — easy to start, with a lot more power underneath.",
     "found": 2020,
     "url": "https://nuxt.com"
   },
@@ -67,7 +67,7 @@
     "title": "Qwik",
     "by": "Builder.io",
     "type": "Tool",
-    "note": "Resumability lets you build extremely fast apps — familiar if you know React.",
+    "note": "Resumability lets you build extremely fast apps. If you know React, you already know about 80% of it.",
     "found": 2023,
     "url": "https://qwik.builder.io"
   },
@@ -75,7 +75,7 @@
     "title": "Next.js",
     "by": "Vercel",
     "type": "Tool",
-    "note": "The framework that introduced me to page-based routing on top of React.",
+    "note": "The first framework that introduced me to page-based routing on top of React. A lot of similarities with Nuxt.",
     "found": 2019,
     "url": "https://nextjs.org"
   },
@@ -91,7 +91,7 @@
     "title": "RxJS",
     "by": "ReactiveX",
     "type": "Tool",
-    "note": "Takes effort to wrap your mind around, but incredibly powerful and flexible once it clicks.",
+    "note": "Takes real effort to wrap your mind around, but incredibly powerful and flexible once it clicks.",
     "found": 2020,
     "url": "https://rxjs.dev"
   }

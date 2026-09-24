@@ -2,30 +2,39 @@
   {
     "group": "Hardware",
     "items": [
-      { "name": "14\" MacBook Pro (M-series)", "note": "Daily driver for everything." },
-      { "name": "27\" 4K monitor", "note": "External display for the desk setup." },
-      { "name": "Mechanical keyboard", "note": "Placeholder — swap in your actual model." }
+      { "name": "AMD Ryzen 7 5800X", "note": "8-core desktop CPU." },
+      { "name": "32GB RAM", "note": "Desktop memory." },
+      { "name": "AMD Radeon RX 5600 XT", "note": "GPU." },
+      { "name": "ASUS VG34V", "note": "34\" ultrawide, 3440×1440 @ 165Hz." },
+      { "name": "Keychron K10 H2", "note": "Keyboard." },
+      { "name": "Logitech G502", "note": "Mouse." }
     ]
   },
   {
-    "group": "Editor & Terminal",
+    "group": "OS & Terminal",
     "items": [
-      { "name": "VS Code", "note": "Main editor, with a handful of extensions." },
-      { "name": "iTerm2 + zsh", "note": "Terminal setup." }
+      { "name": "Windows 10 + WSL2", "note": "Daily driver for development." }
     ]
   },
   {
-    "group": "Browsers & Devtools",
+    "group": "Editor & AI tools",
+    "items": [
+      { "name": "VS Code", "note": "Main editor." },
+      { "name": "WebStorm", "note": "JetBrains IDE for larger projects." },
+      { "name": "Antigravity", "note": "AI-assisted IDE." },
+      { "name": "Claude Code", "note": "AI pair programmer for day-to-day coding." },
+      { "name": "Codex", "note": "AI pair programmer for day-to-day coding." }
+    ]
+  },
+  {
+    "group": "Browsers & Apps",
     "items": [
       { "name": "Chrome", "note": "Primary browser for development and devtools." },
-      { "name": "Firefox", "note": "Cross-browser testing." }
-    ]
-  },
-  {
-    "group": "Apps",
-    "items": [
-      { "name": "Astro + Tailwind CSS", "note": "Current stack for this site." },
-      { "name": "Figma", "note": "Placeholder — swap in what you actually use for design." }
+      { "name": "Brave", "note": "Secondary browser." },
+      { "name": "Obsidian", "note": "Notes and knowledge base." },
+      { "name": "Figma", "note": "Design and prototyping." },
+      { "name": "GitHub", "note": "Source control and collaboration." },
+      { "name": "Insomnia", "note": "API testing." }
     ]
   }
 ]

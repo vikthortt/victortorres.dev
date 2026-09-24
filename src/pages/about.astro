@@ -8,7 +8,7 @@ import resume from '../data/resume.json';
 
 const { title, description } = site.pages.about;
 const { bio } = site.about;
-const { experience, skills, education } = resume;
+const { experience, skills, education, certifications } = resume;
 ---
 
 <Layout
@@ -68,4 +68,18 @@ const { experience, skills, education } = resume;
 			))}
 		</div>
 	</div>
+
+	{certifications && certifications.length > 0 && (
+		<div class="mt-10">
+			<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Certifications</h2>
+			<div class="flex flex-col gap-4">
+				{certifications.map((entry) => (
+					<div class="flex flex-wrap gap-4">
+						<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.date}</p>
+						<p class="font-body text-[15px] text-body-text">{entry.name} · {entry.issuer}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	)}
 </Layout>
