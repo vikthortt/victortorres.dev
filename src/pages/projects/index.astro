@@ -17,6 +17,8 @@ const projects = (await getCollection('projects', ({ data }) => data.status === 
     return a.data.name.localeCompare(b.data.name);
   });
 
+const showSearch = projects.length >= 5;
+
 const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] font-mono text-[13px]';
 ---
 
@@ -27,18 +29,20 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
 >
   <h1 class="font-heading font-semibold text-[28px] text-primary-text mb-6">{title}</h1>
 
-  <form method="get" action="/projects" data-search-form>
-    <div class="relative">
-      <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
-      <input
-        type="search"
-        name="q"
-        data-search-input
-        placeholder="Search projects..."
-        class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
-      />
-    </div>
-  </form>
+  {showSearch && (
+    <form method="get" action="/projects" data-search-form>
+      <div class="relative">
+        <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
+        <input
+          type="search"
+          name="q"
+          data-search-input
+          placeholder="Search projects..."
+          class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
+        />
+      </div>
+    </form>
+  )}
 
   <div class="flex flex-wrap gap-2 mt-6" data-language-pills>
     <a href="/projects" data-language-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>

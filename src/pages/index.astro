@@ -1,12 +1,27 @@
 ---
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/BaseLayout.astro';
 import site from '../data/site.json';
+import NOW from '../data/now.json';
 
 import ProfilePicture from '../images/victortorres.jpg';
 
 const { title, description } = site.pages.home;
-const { heading, intro, cards } = site.home;
+const { heading, intro, cards: allCards } = site.home;
+
+const [publishedPosts, publishedProjects] = await Promise.all([
+  getCollection('blog', ({ data }) => data.status === 'published'),
+  getCollection('projects', ({ data }) => data.status === 'published'),
+]);
+
+const hasContent: Record<string, boolean> = {
+  '/blog': publishedPosts.length > 0,
+  '/projects': publishedProjects.length > 0,
+  '/now': NOW.length > 0,
+};
+
+const cards = allCards.filter((card) => hasContent[card.href] ?? true);
 ---
 
 <Layout

@@ -7,14 +7,16 @@ import site from '../../data/site.json';
 
 const { title, description, subtitle } = site.pages.notes;
 
-const categories = ['React', 'CSS', 'Performance', 'Accessibility'] as const;
-
 // This is a static site: query strings never reach the server, so all
 // filtering (category, tag, search) happens client-side in the <script>
 // below, driven by location.search. The markup below renders the
 // unfiltered, no-JS default state.
 const allPublishedPosts = (await getCollection('blog', ({ data }) => data.status === 'published'))
   .sort((a, b) => b.data.created_date.valueOf() - a.data.created_date.valueOf());
+
+const categories = [...new Set(allPublishedPosts.map((post) => post.data.category))].sort();
+const showCategoryFilter = categories.length > 2 && allPublishedPosts.length > 5;
+const showSearch = allPublishedPosts.length >= 5;
 
 const featuredPost = allPublishedPosts.find((post) => post.data.featured);
 const listPosts = allPublishedPosts.filter((post) => post.id !== featuredPost?.id);
@@ -38,25 +40,29 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   <h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
   <p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
-  <form method="get" action="/blog" data-search-form class="mt-6">
-    <div class="relative">
-      <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
-      <input
-        type="search"
-        name="q"
-        data-search-input
-        placeholder="Search notes..."
-        class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
-      />
-    </div>
-  </form>
+  {showSearch && (
+    <form method="get" action="/blog" data-search-form class="mt-6">
+      <div class="relative">
+        <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
+        <input
+          type="search"
+          name="q"
+          data-search-input
+          placeholder="Search notes..."
+          class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
+        />
+      </div>
+    </form>
+  )}
 
-  <div class="flex flex-wrap gap-2 mt-6" data-category-pills>
-    <a href="/blog" data-category-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
-    {categories.map((category) => (
-      <a href={`/blog?category=${category}`} data-category-pill={category} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{category}</a>
-    ))}
-  </div>
+  {showCategoryFilter && (
+    <div class="flex flex-wrap gap-2 mt-6" data-category-pills>
+      <a href="/blog" data-category-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
+      {categories.map((category) => (
+        <a href={`/blog?category=${category}`} data-category-pill={category} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{category}</a>
+      ))}
+    </div>
+  )}
 
   <p data-tag-notice class="hidden font-mono text-[13px] text-secondary-text mt-4">
     Tagged <span data-tag-notice-value class="text-primary"></span> · <a href="/blog" data-tag-clear class="text-primary hover:text-primary-hover">Clear ×</a>

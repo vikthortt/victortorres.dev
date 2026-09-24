@@ -1,6 +1,8 @@
 ---
+import { getCollection } from 'astro:content';
 import SocialLinks from './SocialLinks.astro';
 import site from '../data/site.json';
+import NOW from '../data/now.json';
 
 interface Props {
   current: string;
@@ -8,15 +10,22 @@ interface Props {
 
 const { current } = Astro.props;
 
-const navItems = [
-  { key: 'home', label: 'Home', href: '/' },
-  { key: 'notes', label: 'Notes', href: '/blog' },
-  { key: 'projects', label: 'Projects', href: '/projects' },
-  { key: 'about', label: 'About', href: '/about' },
-  { key: 'now', label: 'Now', href: '/now' },
-  { key: 'resources', label: 'Resources', href: '/resources' },
-  { key: 'uses', label: 'Uses', href: '/uses' },
+const [publishedPosts, publishedProjects] = await Promise.all([
+  getCollection('blog', ({ data }) => data.status === 'published'),
+  getCollection('projects', ({ data }) => data.status === 'published'),
+]);
+
+const allNavItems = [
+  { key: 'home', label: 'Home', href: '/', show: true },
+  { key: 'notes', label: 'Notes', href: '/blog', show: publishedPosts.length > 0 },
+  { key: 'projects', label: 'Projects', href: '/projects', show: publishedProjects.length > 0 },
+  { key: 'about', label: 'About', href: '/about', show: true },
+  { key: 'now', label: 'Now', href: '/now', show: NOW.length > 0 },
+  { key: 'resources', label: 'Resources', href: '/resources', show: true },
+  { key: 'uses', label: 'Uses', href: '/uses', show: true },
 ] as const;
+
+const navItems = allNavItems.filter((item) => item.show);
 ---
 
 <!-- Desktop sidebar -->
