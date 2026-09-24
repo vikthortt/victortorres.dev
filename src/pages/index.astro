@@ -10,13 +10,9 @@ import ProfilePicture from '../images/victortorres.jpg';
 const { title, description } = site.pages.home;
 const { heading, intro, cards: allCards } = site.home;
 
-const [publishedPosts, publishedProjects] = await Promise.all([
-  getCollection('blog', ({ data }) => data.status === 'published'),
-  getCollection('projects', ({ data }) => data.status === 'published'),
-]);
+const publishedProjects = await getCollection('projects', ({ data }) => data.status === 'published');
 
 const hasContent: Record<string, boolean> = {
-  '/blog': publishedPosts.length > 0,
   '/projects': publishedProjects.length > 0,
   '/now': NOW.length > 0,
 };

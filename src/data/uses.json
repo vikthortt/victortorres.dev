@@ -2,9 +2,7 @@
   {
     "group": "Hardware",
     "items": [
-      { "name": "AMD Ryzen 7 5800X", "note": "8-core desktop CPU." },
-      { "name": "32GB RAM", "note": "Desktop memory." },
-      { "name": "AMD Radeon RX 5600 XT", "note": "GPU." },
+      { "name": "Desktop PC", "note": "AMD Ryzen 7 5800X · 32GB RAM · AMD Radeon RX 5600 XT." },
       { "name": "ASUS VG34V", "note": "34\" ultrawide, 3440×1440 @ 165Hz." },
       { "name": "Keychron K10 H2", "note": "Keyboard." },
       { "name": "Logitech G502", "note": "Mouse." }

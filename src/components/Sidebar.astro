@@ -10,14 +10,11 @@ interface Props {
 
 const { current } = Astro.props;
 
-const [publishedPosts, publishedProjects] = await Promise.all([
-  getCollection('blog', ({ data }) => data.status === 'published'),
-  getCollection('projects', ({ data }) => data.status === 'published'),
-]);
+const publishedProjects = await getCollection('projects', ({ data }) => data.status === 'published');
 
 const allNavItems = [
   { key: 'home', label: 'Home', href: '/', show: true },
-  { key: 'notes', label: 'Notes', href: '/blog', show: publishedPosts.length > 0 },
+  { key: 'notes', label: 'Notes', href: '/blog', show: true },
   { key: 'projects', label: 'Projects', href: '/projects', show: publishedProjects.length > 0 },
   { key: 'about', label: 'About', href: '/about', show: true },
   { key: 'now', label: 'Now', href: '/now', show: NOW.length > 0 },
@@ -26,6 +23,7 @@ const allNavItems = [
 ] as const;
 
 const navItems = allNavItems.filter((item) => item.show);
+const year = new Date().getFullYear();
 ---
 
 <!-- Desktop sidebar -->
@@ -58,7 +56,12 @@ const navItems = allNavItems.filter((item) => item.show);
       </ul>
     </nav>
   </div>
-  <SocialLinks buttonSize={38} />
+  <div>
+    <SocialLinks buttonSize={38} />
+    <p class="font-mono text-[11px] leading-[1.6] text-nav-inactive mt-4">
+      © {year} {site.name}.<br />Built with Astro &amp; Tailwind CSS.
+    </p>
+  </div>
 </aside>
 
 <!-- Mobile top bar -->
@@ -103,6 +106,9 @@ const navItems = allNavItems.filter((item) => item.show);
     </nav>
     <div class="px-[20px] py-[16px]">
       <SocialLinks buttonSize={44} />
+      <p class="font-mono text-[11px] leading-[1.6] text-nav-inactive mt-4">
+        © {year} {site.name}. Built with Astro &amp; Tailwind CSS.
+      </p>
     </div>
   </div>
 </div>

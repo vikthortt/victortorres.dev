@@ -40,7 +40,13 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   <h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
   <p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
-  {showSearch && (
+  {allPublishedPosts.length === 0 && (
+    <p class="font-body text-[16px] leading-[1.6] text-secondary-text mt-8">
+      No notes yet — I'm still writing. Come back soon.
+    </p>
+  )}
+
+  {allPublishedPosts.length > 0 && showSearch && (
     <form method="get" action="/blog" data-search-form class="mt-6">
       <div class="relative">
         <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
@@ -55,77 +61,81 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
     </form>
   )}
 
-  {showCategoryFilter && (
-    <div class="flex flex-wrap gap-2 mt-6" data-category-pills>
-      <a href="/blog" data-category-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
-      {categories.map((category) => (
-        <a href={`/blog?category=${category}`} data-category-pill={category} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{category}</a>
-      ))}
-    </div>
-  )}
-
-  <p data-tag-notice class="hidden font-mono text-[13px] text-secondary-text mt-4">
-    Tagged <span data-tag-notice-value class="text-primary"></span> · <a href="/blog" data-tag-clear class="text-primary hover:text-primary-hover">Clear ×</a>
-  </p>
-
-  <div data-featured-wrapper class="mt-8">
-    {featuredPost && (
-      <NoteCard
-        id={featuredPost.id}
-        url={`/blog/${featuredPost.id}`}
-        title={featuredPost.data.title}
-        dek={featuredPost.data.description}
-        category={featuredPost.data.category}
-        date={featuredPost.data.created_date}
-        readingTime={featuredPost.data.reading_time ?? 1}
-        tags={featuredPost.data.tags}
-        cover={featuredPost.data.image}
-        coverAlt={featuredPost.data.image_alt}
-        featured
-      />
-    )}
-  </div>
-
-  <div class="flex flex-col gap-8 mt-8" data-note-groups>
-    {[...groupedByYear.entries()].map(([year, posts]) => (
-      <div data-note-group>
-        <h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-3">{year}</h2>
-        <div class="flex flex-col gap-4">
-          {posts.map((post) => (
-            <NoteCard
-              id={post.id}
-              url={`/blog/${post.id}`}
-              title={post.data.title}
-              dek={post.data.description}
-              category={post.data.category}
-              date={post.data.created_date}
-              readingTime={post.data.reading_time ?? 1}
-              tags={post.data.tags}
-              cover={post.data.image}
-              coverAlt={post.data.image_alt}
-            />
+  {allPublishedPosts.length > 0 && (
+    <Fragment>
+      {showCategoryFilter && (
+        <div class="flex flex-wrap gap-2 mt-6" data-category-pills>
+          <a href="/blog" data-category-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
+          {categories.map((category) => (
+            <a href={`/blog?category=${category}`} data-category-pill={category} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{category}</a>
           ))}
-          {featuredPost && (
-            <NoteCard
-              id={featuredPost.id}
-              url={`/blog/${featuredPost.id}`}
-              title={featuredPost.data.title}
-              dek={featuredPost.data.description}
-              category={featuredPost.data.category}
-              date={featuredPost.data.created_date}
-              readingTime={featuredPost.data.reading_time ?? 1}
-              tags={featuredPost.data.tags}
-              cover={featuredPost.data.image}
-              coverAlt={featuredPost.data.image_alt}
-              hiddenDuplicate
-            />
-          )}
         </div>
-      </div>
-    ))}
-  </div>
+      )}
 
-  <p data-empty-state class="hidden font-body text-[16px] text-secondary-text mt-8">No notes match your filters.</p>
+      <p data-tag-notice class="hidden font-mono text-[13px] text-secondary-text mt-4">
+        Tagged <span data-tag-notice-value class="text-primary"></span> · <a href="/blog" data-tag-clear class="text-primary hover:text-primary-hover">Clear ×</a>
+      </p>
+
+      <div data-featured-wrapper class="mt-8">
+        {featuredPost && (
+          <NoteCard
+            id={featuredPost.id}
+            url={`/blog/${featuredPost.id}`}
+            title={featuredPost.data.title}
+            dek={featuredPost.data.description}
+            category={featuredPost.data.category}
+            date={featuredPost.data.created_date}
+            readingTime={featuredPost.data.reading_time ?? 1}
+            tags={featuredPost.data.tags}
+            cover={featuredPost.data.image}
+            coverAlt={featuredPost.data.image_alt}
+            featured
+          />
+        )}
+      </div>
+
+      <div class="flex flex-col gap-8 mt-8" data-note-groups>
+        {[...groupedByYear.entries()].map(([year, posts]) => (
+          <div data-note-group>
+            <h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-3">{year}</h2>
+            <div class="flex flex-col gap-4">
+              {posts.map((post) => (
+                <NoteCard
+                  id={post.id}
+                  url={`/blog/${post.id}`}
+                  title={post.data.title}
+                  dek={post.data.description}
+                  category={post.data.category}
+                  date={post.data.created_date}
+                  readingTime={post.data.reading_time ?? 1}
+                  tags={post.data.tags}
+                  cover={post.data.image}
+                  coverAlt={post.data.image_alt}
+                />
+              ))}
+              {featuredPost && (
+                <NoteCard
+                  id={featuredPost.id}
+                  url={`/blog/${featuredPost.id}`}
+                  title={featuredPost.data.title}
+                  dek={featuredPost.data.description}
+                  category={featuredPost.data.category}
+                  date={featuredPost.data.created_date}
+                  readingTime={featuredPost.data.reading_time ?? 1}
+                  tags={featuredPost.data.tags}
+                  cover={featuredPost.data.image}
+                  coverAlt={featuredPost.data.image_alt}
+                  hiddenDuplicate
+                />
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p data-empty-state class="hidden font-body text-[16px] text-secondary-text mt-8">No notes match your filters.</p>
+    </Fragment>
+  )}
 </Layout>
 
 <script>
