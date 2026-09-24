@@ -52,7 +52,7 @@ const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] fon
   </div>
 
   {projects.length > 0 ? (
-    <div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-[18px] mt-8" data-project-grid>
+    <div class="flex flex-col gap-[18px] mt-8" data-project-grid>
       {projects.map((project) => (
         <ProjectCard
           id={project.id}
