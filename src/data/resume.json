@@ -1,0 +1,52 @@
+{
+  "experience": [
+    {
+      "years": "2022–Present",
+      "role": "Senior Software Engineer",
+      "company": "Wizeline",
+      "summary": "Leading frontend architecture and development on client projects, mentoring engineers, and driving adoption of Vue and TypeScript best practices across teams."
+    },
+    {
+      "years": "2020–2022",
+      "role": "Software Engineer",
+      "company": "Wizeline",
+      "summary": "Built and maintained frontend applications for client projects, working across Vue and React codebases in an agile, cross-functional team."
+    },
+    {
+      "years": "2014–2020",
+      "role": "Full Stack GIS Engineer",
+      "company": "SIConsultores",
+      "summary": "Led a 4-person team designing and building GIS software for clients. Cut processing time from days to hours by moving to a Node.js/PostgreSQL stack, and maintained legacy applications written in C#, Visual Basic, Java, and Lisp."
+    }
+  ],
+  "skills": ["Vue", "TypeScript", "JavaScript", "React", "Angular", "Node.js", "Nuxt", "AWS"],
+  "education": [
+    {
+      "years": "2010–2015",
+      "degree": "Ingeniería en Ciencias de la Computación",
+      "school": "Universidad de Guadalajara"
+    },
+    {
+      "years": "2015–2016",
+      "degree": "Full Stack Web Development",
+      "school": "Free Code Camp"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Solutions Architect – Associate",
+      "issuer": "Amazon Web Services (AWS)",
+      "date": "Aug 2025"
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner",
+      "issuer": "Amazon Web Services (AWS)",
+      "date": "Aug 2022"
+    },
+    {
+      "name": "Certified SAFe® 5 Practitioner",
+      "issuer": "Scaled Agile, Inc.",
+      "date": "Feb 2022"
+    }
+  ]
+}

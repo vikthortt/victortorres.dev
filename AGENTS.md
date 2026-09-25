@@ -50,14 +50,17 @@ a visual check via `npm run dev` for anything touching layout, styles, or MDX re
 ## Architecture
 
 - **Routing/pages**: `src/pages/` — file-based routing (`.astro` files). `src/pages/blog/[id].astro`
-  is the dynamic blog post route, sourced from the `blog` content collection.
-- **Content collections**: `src/content.config.ts` defines the `blog` collection using the
-  Content Layer `glob()` loader over `src/blog/**/*.mdx`. The post identifier is `id`
-  (not `slug` — that field is a legacy/optional frontmatter override, not the routing key).
-- **Layouts**: `src/layouts/` — `BaseLayout.astro` is the outer HTML shell every page uses;
-  `BlogLayout.astro` / `ContentLayout.astro` wrap post/page content.
+  and `src/pages/projects/[id].astro` are dynamic routes sourced from content collections.
+- **Content collections**: `src/content.config.ts` defines `blog` (Content Layer `glob()` loader
+  over `src/blog/**/*.mdx`) and `projects` (same, over `src/projects/**/*.mdx`). The post/project
+  identifier is `id` (not `slug` — that field is a legacy/optional frontmatter override, not the
+  routing key).
+- **Layouts**: `src/layouts/` — `BaseLayout.astro` is the outer HTML shell every page uses
+  (renders the sidebar/mobile nav and the centered content column); `BlogLayout.astro` wraps
+  article pages with `PostHeader`.
 - **Components**: `src/components/` — Mostly plain `.astro` components. For simple interactivity, use
-  a `<script>` tag in the `.astro` component. If the logic is complex enough to genuinely need
+  a `<script>` tag in the `.astro` component (e.g. the client-side search/filter scripts on
+  Notes/Projects/Resources — see note below). If the logic is complex enough to genuinely need
   a framework (non-trivial state, reactivity across multiple elements, etc.), prefer **Vue**
   (`@astrojs/vue`) over other frameworks — install it if not present already
 - **Styles**: `src/styles/global.css` is the only styling config that matters. Tailwind v4 is
@@ -66,13 +69,32 @@ a visual check via `npm run dev` for anything touching layout, styles, or MDX re
   one unless you're prepared to wire it up with an explicit `@config` directive in `global.css`
   (Tailwind v4 won't auto-read a JS config file otherwise).
 
+## Content
+
+The site is `output: "static"` (no server), which matters for two things:
+
+- **All non-MDX content lives in `src/data/*.json`** — `site.json` (site name, social links,
+  résumé URL, every page's `<title>`/description, Home hero copy, About bio), `resume.json`
+  (Experience/Skills/Education), `now.json`, `uses.json`, `resources.json`. Edit these directly
+  to change copy; no component code needs to change. Long-form content (blog posts, project
+  writeups) stays as MDX under `src/blog/` and `src/projects/` instead, per the content
+  collections above.
+- **Query-string filtering is client-side only.** Because there's no server, `Astro.url.searchParams`
+  is always empty in production — a static host serves the same HTML file regardless of query
+  string. Notes/Projects/Resources search and filter pills are therefore implemented in a
+  `<script>` that reads `location.search` after load (see `src/pages/blog/index.astro` for the
+  pattern). Don't reach for `Astro.url.searchParams` for anything that needs to work when
+  deployed — verify with `npm run preview` (serves the real static build), not `npm run dev`
+  (which can mask this because its dev server re-renders per request).
+
 ## Conventions
 
 - TypeScript config extends `astro/tsconfigs/strict` — respect strict typing in `.ts`/`.astro`
   script blocks rather than reaching for `any`.
 - Adding a blog post: new `.mdx` file under `src/blog/`, with frontmatter matching the `blog`
-  collection schema in `src/content.config.ts` (required: `title`, `description`, `created_date`;
-  everything else is optional — check the schema before inventing new frontmatter keys).
+  collection schema in `src/content.config.ts` (required: `title`, `description`, `category`,
+  `created_date`; everything else is optional — check the schema before inventing new frontmatter
+  keys). Adding a project: same idea under `src/projects/`, matching the `projects` schema.
 - Commit messages loosely follow Conventional Commits (`chore:`, `fix:`, etc.) — match that style.
 - Don't reintroduce Tailwind v3-style JS config or `content` globs; Tailwind v4 auto-detects
   sources from the project root.

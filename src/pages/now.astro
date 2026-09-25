@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/BaseLayout.astro';
+import EmptyState from '../components/EmptyState.astro';
+import site from '../data/site.json';
+import NOW_DATA from '../data/now.json';
+
+const { title, description, subtitle } = site.pages.now;
+
+interface NowEntry {
+	date: string;
+	kind: string;
+	text: string;
+}
+
+const NOW = NOW_DATA as NowEntry[];
+const [latest, ...earlier] = NOW;
+
+const kindColors: Record<string, string> = {
+	Working: 'text-primary border-primary-tag-border',
+	Studying: 'text-secondary-text border-border',
+	Learning: 'text-secondary-text border-border',
+};
+---
+
+<Layout
+	title={title}
+	description={description}
+	current="now"
+>
+	<h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
+	<p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
+
+	<div class="max-w-[620px] mt-8">
+		{!latest && (
+			<EmptyState
+				icon="clock"
+				title="No updates yet"
+				message="This page tracks what I'm focused on right now. Check back soon, or read my latest notes in the meantime."
+				buttonLabel="Read my notes"
+				buttonHref="/blog"
+				buttonVariant="secondary"
+			/>
+		)}
+
+		{latest && (
+			<div class="rounded-[12px] border border-primary-tag-border bg-surface p-[20px]">
+				<div class="flex items-center gap-3">
+					<span class={`font-mono text-[11.5px] uppercase tracking-[.06em] rounded-[20px] border px-3 py-1 ${kindColors[latest.kind]}`}>
+						{latest.kind}
+					</span>
+					<span class="font-mono text-[12.5px] text-muted-text">Latest · {latest.date}</span>
+				</div>
+				<p class="font-heading text-[clamp(18px,4.2vw,21px)] leading-[1.4] text-primary-text mt-3">
+					{latest.text}
+				</p>
+			</div>
+		)}
+
+		{earlier.length > 0 && (
+			<div class="mt-10">
+				<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Earlier</h2>
+				<div class="flex flex-col gap-6 border-l border-divider pl-[20px]">
+					{earlier.map((entry) => (
+						<div>
+							<div class="flex items-center gap-3">
+								<span class={`font-mono text-[11px] uppercase tracking-[.06em] rounded-[20px] border px-2 py-0.5 ${kindColors[entry.kind]}`}>
+									{entry.kind}
+								</span>
+								<span class="font-mono text-[12.5px] text-muted-text">{entry.date}</span>
+							</div>
+							<p class="font-body text-[16px] leading-[1.7] text-body-text mt-2">{entry.text}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		)}
+	</div>
+</Layout>

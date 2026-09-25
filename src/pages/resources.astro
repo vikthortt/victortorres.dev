@@ -1,8 +1,15 @@
 ---
-import Layout from '../layouts/ContentLayout.astro';
+import Layout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import EmptyState from '../components/EmptyState.astro';
+import site from '../data/site.json';
+import RESOURCES from '../data/resources.json';
 
-const title = 'Resources'
-const description = "Victor Torres's list of useful content"
+const { title, description, subtitle } = site.pages.resources;
+
+const types = ['Blog', 'Book', 'Tool', 'Course'] as const;
+
+const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] font-mono text-[13px]';
 ---
 
 <Layout
@@ -10,30 +17,144 @@ const description = "Victor Torres's list of useful content"
   description={description}
   current="resources"
 >
-  <p class="font-body text-paragraph my-2">
-    This is a list of Internet resources that I've found useful at some point. Most of them are related to software development, but there are also some that I use in my daily life.
-  </p>
+  <h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
+  <p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
-  <h2 class="text-section-title text-primary mt-4 xl:mt-8">
-    Frontend Development
-  </h2>
+  {RESOURCES.length === 0 ? (
+    <div class="mt-8">
+      <EmptyState
+        icon="book"
+        title="Nothing listed yet"
+        message="I'm collecting the books, blogs, tools and courses worth recommending. Check back soon."
+        buttonLabel="Read my notes"
+        buttonHref="/blog"
+        buttonVariant="secondary"
+      />
+    </div>
+  ) : (
+    <Fragment>
+      <form method="get" action="/resources" data-search-form class="mt-6">
+        <div class="relative">
+          <Icon name="search" class="absolute left-[14px] top-1/2 -translate-y-1/2 text-muted-text" />
+          <input
+            type="search"
+            name="q"
+            data-search-input
+            placeholder="Search resources..."
+            class="h-[44px] w-full rounded-[8px] border border-border bg-surface pl-[40px] pr-[14px] font-body text-[15px] text-primary-text placeholder:text-muted-text focus:border-primary"
+          />
+        </div>
+      </form>
 
-  <h3 class="text-subsection-title my-2">
-    Frameworks and Libraries:
-  </h3>
-  <ul class="list-disc pl-6 text-paragraph">
-    <li><a href="https://angular.io" class="text-primary hover:underline">Angular</a> - AngularJS was the first framework I used, and I loved how easy it was build interactive apps with its two-ways data binding. When Angular 2+ was launched, I adopted it immediately, migrating the few production applications we had to it. Sometimes, I still miss working with it.</li>
-    <li><a href="https://vuejs.org" class="text-primary hover:underline">Vue.js</a> - This is my main stack now. I've been working with vue for close to 5 years now, and I'm still in love with it.</li>
-    <li><a href="https://react.dev" class="text-primary hover:underline">React</a> - While it's not my personal favorite, I acknowledge its popularity and capabilities. It's the most widely used framework out there for good reasons. Having React in your toolkit as a developer is almost a must nowadays.</li>
-    <li><a href="https://astro.build" class="text-primary hover:underline">Astro</a> - So far, my favorite static site generator. I like the simplicity you can build sites with it. Plus it allows you to use multiple frameworks in the same project.</li>
-    <li><a href="https://tailwindcss.com" class="text-primary hover:underline">Tailwind CSS</a> - My go-to CSS framework. You need to get used to its philosophy first if you want to be productive, otherwise making a change of style is a headache. I'm still learning all the customization you can configure.</li>
-    <li><a href="https://vitejs.dev" class="text-primary hover:underline">Vite</a> - If you ever worked with webpack, you know why I love Vite.</li>
-    <li><a href="https://vitest.dev" class="text-primary hover:underline">Vitest</a> - A Vite-native testing framework. I used to skip unit testing, Jest always felt so slow when running my tests. With Vitest that is not an excuse anymore (most of the time).</li>
-    <li><a href="https://nuxt.com" class="text-primary hover:underline">Nuxt</a> - An incredible framework for building web applications with Vue. I spend most of my days at work working with it. It's really easy to get started, but there's a lot more that makes it really powerful.</li>
-    <li><a href="https://qwik.builder.io" class="text-primary hover:underline">Qwik</a> - Resumability is the idea behind Qwik. It let you build extremely fast applications. If you know react, you already know ~80% of it.</li>
-    <li><a href="https://nextjs.org" class="text-primary hover:underline">Next.js</a> - Next was the first framework that introduced me to the page-based routes concept. A great framework on top of React for building web application. A lot of similarities with Nuxt.</li>
-    <li><a href="https://remix.run" class="text-primary hover:underline">Remix</a> - I haven't had the opportunity to play with it yet, but some awesome devs are behind this project. Remix is a framework you must have on your watchlist at least.</li>
-    <li><a href="https://rxjs.dev" class="text-primary hover:underline">RxJS</a> - A reactive programming library. It takes a lot of effort to wrap your mind around the new paradigm of handling data with it, but once you do it, you realize it is incredible powerful and flexible</li>
-  </ul>
+      <div class="flex flex-wrap gap-2 mt-6" data-type-pills>
+        <a href="/resources" data-type-pill="" class={`${pillBase} bg-primary text-on-primary`}>All</a>
+        {types.map((type) => (
+          <a href={`/resources?type=${type}`} data-type-pill={type} class={`${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`}>{type}s</a>
+        ))}
+      </div>
 
+      <div class="flex flex-col mt-8" data-resource-list>
+        {RESOURCES.map((resource) => (
+          <a
+            href={resource.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-resource-row
+            data-type={resource.type}
+            data-search={`${resource.title} ${resource.by} ${resource.note}`.toLowerCase()}
+            class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-b border-border py-[14px] hover:bg-[rgba(255,255,255,.03)]"
+          >
+            <p class="font-heading font-semibold text-[16px] text-primary-text">
+              {resource.title} <span class="font-body font-normal text-secondary-text">— {resource.by}</span>
+            </p>
+            <span class="font-mono text-[12px] uppercase tracking-[.06em] text-primary">{resource.type}</span>
+            <p class="font-body text-[14px] leading-[1.5] text-secondary-text w-full">{resource.note}</p>
+            <p class="font-mono text-[12px] text-muted-text">Found {resource.found}</p>
+          </a>
+        ))}
+      </div>
+
+      <div data-empty-state class="hidden mt-8">
+        <EmptyState
+          icon="search"
+          title="No resources match"
+          message="Try a different search or clear the filters."
+          buttonLabel="Clear filters"
+          buttonHref="/resources"
+          buttonVariant="secondary"
+        />
+      </div>
+    </Fragment>
+  )}
 </Layout>
+
+<script>
+  const pillBase = 'inline-flex h-[36px] items-center rounded-[20px] px-[14px] font-mono text-[13px]';
+  const pillActive = `${pillBase} bg-primary text-on-primary`;
+  const pillInactive = `${pillBase} text-secondary-text border border-border hover:border-primary-tag-border`;
+
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-resource-row]'));
+  const pills = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-type-pill]'));
+  const emptyState = document.querySelector<HTMLElement>('[data-empty-state]');
+  const searchInput = document.querySelector<HTMLInputElement>('[data-search-input]');
+  const searchForm = document.querySelector<HTMLFormElement>('[data-search-form]');
+
+  const readState = () => {
+    const params = new URLSearchParams(location.search);
+    return {
+      type: params.get('type') || '',
+      q: (params.get('q') || '').trim().toLowerCase(),
+    };
+  };
+
+  const buildUrl = (state: { type: string; q: string }) => {
+    const params = new URLSearchParams();
+    if (state.type) params.set('type', state.type);
+    if (state.q) params.set('q', state.q);
+    const qs = params.toString();
+    return qs ? `/resources?${qs}` : '/resources';
+  };
+
+  const apply = (state: { type: string; q: string }) => {
+    let visibleCount = 0;
+    for (const row of rows) {
+      const type = row.dataset.type || '';
+      const search = row.dataset.search || '';
+      const matches = (!state.type || type === state.type) && (!state.q || search.includes(state.q));
+      row.classList.toggle('hidden', !matches);
+      if (matches) visibleCount += 1;
+    }
+
+    for (const pill of pills) {
+      const isActive = (pill.dataset.typePill || '') === state.type;
+      pill.className = isActive ? pillActive : pillInactive;
+    }
+
+    if (emptyState) emptyState.classList.toggle('hidden', visibleCount > 0);
+    if (searchInput) searchInput.value = state.q;
+  };
+
+  apply(readState());
+
+  for (const pill of pills) {
+    pill.addEventListener('click', (event) => {
+      event.preventDefault();
+      const state = readState();
+      state.type = pill.dataset.typePill || '';
+      history.pushState(null, '', buildUrl(state));
+      apply(state);
+    });
+  }
+
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', (event) => event.preventDefault());
+    searchInput.addEventListener('input', () => {
+      const state = readState();
+      state.q = searchInput.value.trim().toLowerCase();
+      history.replaceState(null, '', buildUrl(state));
+      apply(state);
+    });
+  }
+
+  window.addEventListener('popstate', () => apply(readState()));
+</script>

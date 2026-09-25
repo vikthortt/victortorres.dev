@@ -1,0 +1,33 @@
+---
+export interface Props {
+  id: string;
+  url: string;
+  name: string;
+  description: string;
+  language: string;
+  projectStatus: 'Active' | 'Archived';
+}
+
+const { id, url, name, description, language, projectStatus } = Astro.props as Props;
+const searchHaystack = `${name} ${description}`.toLowerCase();
+---
+<a
+  href={url}
+  data-project-card
+  data-id={id}
+  data-language={language}
+  data-search={searchHaystack}
+  class="block bg-surface border border-border rounded-[10px] p-[20px] hover:border-primary-tag-border"
+>
+  <div class="flex items-center justify-between gap-2">
+    <h2 class="font-heading font-semibold text-[18px] text-primary-text">{name}</h2>
+    <span class:list={[
+      'font-mono text-[11px] uppercase tracking-[.06em] shrink-0',
+      projectStatus === 'Active' ? 'text-primary' : 'text-muted-text',
+    ]}>
+      {projectStatus}
+    </span>
+  </div>
+  <p class="font-body text-[13.5px] leading-[1.5] text-secondary-text mt-2">{description}</p>
+  <span class="inline-block font-mono text-[12px] text-primary mt-3">{language}</span>
+</a>

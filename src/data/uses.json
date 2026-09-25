@@ -1,0 +1,38 @@
+[
+  {
+    "group": "Hardware",
+    "items": [
+      { "name": "Desktop PC", "note": "AMD Ryzen 7 5800X · 32GB RAM · AMD Radeon RX 5600 XT." },
+      { "name": "ASUS VG34V", "note": "34\" ultrawide, 3440×1440 @ 165Hz." },
+      { "name": "Keychron K10 H2", "note": "Keyboard." },
+      { "name": "Logitech G502", "note": "Mouse." }
+    ]
+  },
+  {
+    "group": "OS & Terminal",
+    "items": [
+      { "name": "Windows 10 + WSL2", "note": "Daily driver for development." }
+    ]
+  },
+  {
+    "group": "Editor & AI tools",
+    "items": [
+      { "name": "VS Code", "note": "Main editor." },
+      { "name": "WebStorm", "note": "JetBrains IDE for larger projects." },
+      { "name": "Antigravity", "note": "AI-assisted IDE." },
+      { "name": "Claude Code", "note": "AI pair programmer for day-to-day coding." },
+      { "name": "Codex", "note": "AI pair programmer for day-to-day coding." }
+    ]
+  },
+  {
+    "group": "Browsers & Apps",
+    "items": [
+      { "name": "Chrome", "note": "Primary browser for development and devtools." },
+      { "name": "Brave", "note": "Secondary browser." },
+      { "name": "Obsidian", "note": "Notes and knowledge base." },
+      { "name": "Figma", "note": "Design and prototyping." },
+      { "name": "GitHub", "note": "Source control and collaboration." },
+      { "name": "Insomnia", "note": "API testing." }
+    ]
+  }
+]

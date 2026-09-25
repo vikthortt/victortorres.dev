@@ -1,53 +1,92 @@
 ---
-import Layout from '../layouts/ContentLayout.astro';
+import Layout from '../layouts/BaseLayout.astro';
 import { Image } from "astro:assets";
 
 import ProfilePicture from '../images/victortorres.jpg';
+import site from '../data/site.json';
+import resume from '../data/resume.json';
 
-const title = 'About'
-const description = "About Victor Torres"
+const { title, description, subtitle } = site.pages.about;
+const { bio } = site.about;
+const { experience, skills, education, certifications } = resume;
 ---
 
 <Layout
-  title={title}
-  description={description}
-  current="about"
+	title={title}
+	description={description}
+	current="about"
 >
-  <article>
-    <p class="font-body text-paragraph my-4">
-      Hey! I’m Victor Torres 👋
-    </p>
-    <p class="font-body text-paragraph my-4">
-      I’m a software developer based in Guadalajara, Mexico, passionate about building clean, scalable, and delightful web applications. I believe in sharing knowledge freely, making things people actually use, and writing code that other developers, including my future self, won’t hate you for six months later.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      This blog is where I publish my deep dives, side projects, and ideas worth sharing — mostly for future me, and hopefully useful for others too.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      I created this space to share what I learn while working with modern technologies as I grow into a more well-rounded full-stack developer. I’m not trying to be perfect — I’m trying to <i>document the journey</i>, stay curious, and maybe, just maybe, help a few devs along the way.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      This blog is my digital lab — part archive, part playground. If it helps someone else solve a problem, build a better app, or even just feel less alone in the learning curve, that’s a win.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      When I'm not coding, I'm probably studying something new, reading a book, watching anime or playing some video game.
-    </p>
-    <p class="font-body text-paragraph my-4">
-      Thanks for being here ✌️
-    </p>
+	<h1 class="font-heading font-semibold text-[28px] text-primary-text">{title}</h1>
+	<p class="font-body text-[15px] text-secondary-text mt-1">{subtitle}</p>
 
-    <p class="font-body text-paragraph my-4">
-      - Victor
-    </p>
+	<div class="flex flex-wrap items-start gap-6 mt-8">
+		<Image
+			src={ProfilePicture}
+			alt="Victor Torres profile picture"
+			width={130}
+			height={130}
+			class="rounded-[14px] border border-border shrink-0 object-cover"
+		/>
+		<div class="flex-1 min-w-[280px]">
+			{bio.map((paragraph) => (
+				<p class="font-body text-[16px] leading-[1.7] text-body-text mb-4">
+					{paragraph}
+				</p>
+			))}
+		</div>
+	</div>
 
-  </article>
-  <div slot="sidebar" class="sidebar flex flex-col items-center">
-    <Image
-      src={ProfilePicture}
-      alt="Victor Torres profile picture"
-      width={300}
-      height={300}
-      class="rounded-full my-8 border border-border"
-    />
-  </div>
+	<hr class="mt-10 border-t border-divider" />
+
+	<div class="mt-10">
+		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Experience</h2>
+		<div class="flex flex-col gap-6">
+			{experience.map((entry) => (
+				<div class="flex flex-wrap gap-4">
+					<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.years}</p>
+					<div class="flex-1 min-w-[200px]">
+						<p class="font-heading font-semibold text-[16px] text-primary-text">{entry.role} · {entry.company}</p>
+						<p class="font-body text-[15px] leading-[1.6] text-secondary-text mt-1">{entry.summary}</p>
+					</div>
+				</div>
+			))}
+		</div>
+	</div>
+
+	<div class="mt-10">
+		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Skills</h2>
+		<div class="flex flex-wrap gap-2">
+			{skills.map((skill) => (
+				<span class="font-mono text-[12.5px] text-primary border border-primary-tag-border rounded-[20px] px-3 py-1">
+					{skill}
+				</span>
+			))}
+		</div>
+	</div>
+
+	<div class="mt-10">
+		<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Education</h2>
+		<div class="flex flex-col gap-4">
+			{education.map((entry) => (
+				<div class="flex flex-wrap gap-4">
+					<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.years}</p>
+					<p class="font-body text-[15px] text-body-text">{entry.degree} · {entry.school}</p>
+				</div>
+			))}
+		</div>
+	</div>
+
+	{certifications && certifications.length > 0 && (
+		<div class="mt-10">
+			<h2 class="font-mono font-semibold text-[13px] uppercase tracking-[.06em] text-muted-text mb-4">Certifications</h2>
+			<div class="flex flex-col gap-4">
+				{certifications.map((entry) => (
+					<div class="flex flex-wrap gap-4">
+						<p class="w-[130px] shrink-0 font-mono text-[12.5px] text-muted-text">{entry.date}</p>
+						<p class="font-body text-[15px] text-body-text">{entry.name} · {entry.issuer}</p>
+					</div>
+				))}
+			</div>
+		</div>
+	)}
 </Layout>

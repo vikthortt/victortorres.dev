@@ -1,26 +1,36 @@
 ---
+export interface Props {
+  size?: 'default' | 'article';
+}
 
+const { size = 'default' } = Astro.props as Props;
+const bodySizeClasses = size === 'article'
+  ? 'prose-p:text-[17px] prose-p:leading-[1.75] prose-li:text-[17px] prose-li:leading-[1.75]'
+  : 'prose-p:text-[16px] prose-p:leading-[1.7] prose-li:text-[16px] prose-li:leading-[1.7]';
 ---
 <div
-  class="prose
-  text-primary-text
-  prose-headings:font-heading prose-headings:text-primary
-  prose-h1:text-page-title
-  prose-h2:text-section-title
-  prose-h3:text-subsection-title
-  prose-h4:text-subsection-title prose-h4:text-[20px]/[32px]
-  prose-p:font-body prose-p:text-paragraph prose-p:text-primary-text prose-p:text-justify
-  prose-a:text-primary-text prose-a:underline prose-a:decoration-primary prose-a:decoration-2
-  prose-kbd:text-secondary-text
-  prose-strong:text-primary-text prose-strong:font-extrabold
-  prose-em:text-primary-text prose-em:italic
-  prose-li:marker:text-primary-text
-  prose-blockquote:text-secondary-text prose-blockquote:font-body prose-blockquote:italic prose-blockquote:bg-surface
-  prose-pre:bg-surface prose-pre:rounded-none
-  prose-code:font-code prose-code:text-secondary-text prose-code:bg-surface
-  prose-figcaption:font-caption prose-figcaption:text-secondary-text
-  prose-captions:font-caption prose-captions:text-secondary-text
-  w-full max-w-none"
+  class:list={[
+    "prose",
+    "text-body-text",
+    "prose-headings:font-heading prose-headings:font-semibold prose-headings:text-primary-text",
+    "prose-h1:text-[28px]",
+    "prose-h2:text-[22px]",
+    "prose-h3:text-[19px]",
+    "prose-h4:text-[17px]",
+    "prose-p:font-body prose-p:text-body-text",
+    "prose-a:text-primary prose-a:underline prose-a:decoration-primary prose-a:decoration-2 hover:prose-a:text-primary-hover",
+    "prose-kbd:text-secondary-text",
+    "prose-strong:text-primary-text prose-strong:font-bold",
+    "prose-em:text-primary-text prose-em:italic",
+    "prose-li:font-body prose-li:text-body-text prose-li:marker:text-secondary-text",
+    "prose-blockquote:text-secondary-text prose-blockquote:font-body prose-blockquote:italic prose-blockquote:bg-surface prose-blockquote:border-primary",
+    "prose-pre:bg-surface prose-pre:rounded-none",
+    "prose-code:font-mono prose-code:text-secondary-text prose-code:bg-surface",
+    "prose-figcaption:font-mono prose-figcaption:text-[12px] prose-figcaption:text-muted-text",
+    "prose-captions:font-mono prose-captions:text-[12px] prose-captions:text-muted-text",
+    bodySizeClasses,
+    "w-full max-w-none",
+  ]}
 >
   <slot />
 </div>

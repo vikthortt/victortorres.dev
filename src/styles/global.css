@@ -8,19 +8,33 @@
   --font-body: 'Nunito Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  --color-background: #1B1F23;
-  --color-surface: #2A2E35;
-  --color-primary-text: #F0F1F2;
-  --color-secondary-text: #A8B2C1;
-  --color-primary: #34D399;
-  --color-secondary: #35A6D4;
-  --color-accent: #DE85FD;
+  /* Page chrome */
+  --color-background: oklch(22% .012 245);
+  --color-sidebar: oklch(16% .012 245);
+  --color-surface: oklch(26% .014 245);
+  --color-placeholder: oklch(30% .016 245);
+  --color-border: oklch(32% .012 245);
+  --color-menu-divider: oklch(26% .012 245);
+  --color-divider: oklch(30% .012 245);
+  --color-border-dashed: oklch(34% .012 245);
+
+  /* Accent (mint) */
+  --color-primary: oklch(74% .15 165);
+  --color-primary-hover: oklch(80% .15 165);
+  --color-primary-tag-border: oklch(45% .08 165);
+  --color-on-primary: #12211c;
+
+  /* Text */
+  --color-primary-text: #f4f5f6;
+  --color-secondary-text: oklch(74% .015 90);
+  --color-body-text: oklch(82% .012 90);
+  --color-muted-text: oklch(68% .015 90);
+  --color-nav-inactive: oklch(72% .012 90);
 
   --color-error: #FF4E39;
   --color-warning: #D6D320;
   --color-info: #28A1FE;
   --color-success: #20D65A;
-  --color-border: #2f3135;
 
   --text-page-title: 48px;
   --text-page-title--line-height: 64px;
@@ -47,4 +61,9 @@
 
   --text-code: 18px;
   --text-code--line-height: 24px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
